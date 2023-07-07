@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@using CharacterCreator.Models;
+
+<h1>Welcome to the Character Creator</h1>
+
+<hr>
+
+@if (!User.Identity.IsAuthenticated)
+{
+  <p>Please @Html.ActionLink("log in", "LogIn", "Account") to view or manage your items.</p>
+}
+
+<hr>
+
+<p>@Html.ActionLink("Manage Characters", "Index", "Characters")</p>
+<p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>
