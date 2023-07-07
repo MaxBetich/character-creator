@@ -4,14 +4,20 @@ using Microsoft.AspNetCore.Mvc;
 using CharacterCreator.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace CharacterCreator.Controllers
 {
   public class CharactersController : Controller
   {
     private readonly CharacterCreatorContext _db;
-    public CharactersController(CharacterCreatorContext db)
+    private readonly UserManager<ApplicationUser> _userManager;
+    public CharactersController(UserManager<ApplicationUser> userManager, CharacterCreatorContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
@@ -34,5 +40,33 @@ namespace CharacterCreator.Controllers
       ViewBag.BackgroundList = new SelectList(_db.Backgrounds, "BackgroundId", "BackgroundName");
       return View();
     }
+
+    [HttpPost]
+    public async Task<ActionResult> Create(Character character, int AncestryId, int CharacterClassId, int BackgroundId)
+    {
+      if (!ModelState.IsValid)
+      {
+        List<Ancestry> ancestries = _db.Ancestries.ToList();
+        List<CharacterClass> characterClasses = _db.CharacterClasses.ToList();
+        List<Background> backgrounds = _db.Backgrounds.ToList();
+        ViewBag.Ancestries = ancestries;
+        ViewBag.CharacterClasses = characterClasses;
+        ViewBag.Backgrounds = backgrounds;
+        ViewBag.AncestryList = new SelectList(_db.Ancestries, "AncestryId", "AncestryName");
+        ViewBag.CharacterClassList = new SelectList(_db.CharacterClasses, "CharacterClassId", "CharacterClassName");
+        ViewBag.BackgroundList = new SelectList(_db.Backgrounds, "BackgroundId", "BackgroundName");
+        return View(character);
+      }
+      else
+      {
+        string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+        character.User = currentUser;
+        _db.Characters.Add(character);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
+    }
+
   }
 }
