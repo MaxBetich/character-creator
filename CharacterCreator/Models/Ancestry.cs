@@ -15,5 +15,6 @@ namespace CharacterCreator.Models
     public List<string> Flaws {get;set;}
     public string Trait {get;set;}
     public List<AncestryFeat> AncestryFeats {get;set;}
+    public List<Character> Characters {get;set;}
   }
 }
