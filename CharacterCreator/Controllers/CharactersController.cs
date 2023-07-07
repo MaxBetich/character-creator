@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace CharacterCreator.Controllers
 {
@@ -73,14 +74,29 @@ namespace CharacterCreator.Controllers
     {
       Character currentCharacter = _db.Characters
                                         .Include(e => e.Ancestry)
+                                        .ThenInclude(e => e.AncestryFeats)
                                         .Include(e => e.Background)
                                         .Include(e => e.CharacterClass)
+                                        .ThenInclude(e => e.ClassFeats)
                                         .FirstOrDefault(e => e.CharacterId == id);
       Ancestry currentAncestry = currentCharacter.Ancestry;
       Background currentBackground = currentCharacter.Background;
       CharacterClass currentClass = currentCharacter.CharacterClass;
-      ViewBag.AncestryFeatList = new SelectList(currentCharacter.Ancestry.AncestryFeats, "AncestryFeatId", "AncestryFeatName");
-      ViewBag.ClassFeatList = new SelectList(currentCharacter.CharacterClass.ClassFeats, "ClassFeatId", "ClassFeatName");
+      List<string> ancestryBoosts = currentAncestry.Boosts;
+      List<string> backgroundBoosts = currentBackground.Boosts;
+      List<string> ancestryFlaws = currentAncestry.Flaws;
+      if (ancestryFlaws.Count != 0)
+      {
+        ViewBag.AncestryFlaws = ancestryFlaws;
+      }
+      ViewBag.Ancestry = currentAncestry;
+      ViewBag.Background = currentBackground;
+      ViewBag.Class = currentClass;
+      ViewBag.AncestryBoosts = ancestryBoosts;
+      ViewBag.BackgroundBoosts = backgroundBoosts;
+      ViewBag.AncestryFeatList = new SelectList(currentAncestry.AncestryFeats, "AncestryFeatId", "AncestryFeatName");
+      ViewBag.ClassFeatList = new SelectList(currentClass.ClassFeats, "ClassFeatId", "ClassFeatName");
+      return View(currentCharacter);
     }
 
   }
