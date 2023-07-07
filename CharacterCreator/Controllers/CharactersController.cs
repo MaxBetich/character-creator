@@ -105,9 +105,15 @@ namespace CharacterCreator.Controllers
     }
 
     [HttpPost]
-    public ActionResult Choices(Character character)
+    public async Task<ActionResult> Choices(Character character)
     {
-
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      character.User = currentUser;
+      int id = character.CharacterId;
+      _db.Characters.Update(character);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new {id = id});
     }
   }
 }
