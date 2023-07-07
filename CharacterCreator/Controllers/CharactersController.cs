@@ -11,6 +11,7 @@ using System.Security.Claims;
 
 namespace CharacterCreator.Controllers
 {
+  [Authorize]
   public class CharactersController : Controller
   {
     private readonly CharacterCreatorContext _db;
@@ -64,8 +65,22 @@ namespace CharacterCreator.Controllers
         character.User = currentUser;
         _db.Characters.Add(character);
         _db.SaveChanges();
-        return RedirectToAction("Index");
+        return RedirectToAction("Choices", new {id = character.CharacterId});
       }
+    }
+
+    public ActionResult Choices(int id)
+    {
+      Character currentCharacter = _db.Characters
+                                        .Include(e => e.Ancestry)
+                                        .Include(e => e.Background)
+                                        .Include(e => e.CharacterClass)
+                                        .FirstOrDefault(e => e.CharacterId == id);
+      Ancestry currentAncestry = currentCharacter.Ancestry;
+      Background currentBackground = currentCharacter.Background;
+      CharacterClass currentClass = currentCharacter.CharacterClass;
+      ViewBag.AncestryFeatList = new SelectList(currentCharacter.Ancestry.AncestryFeats, "AncestryFeatId", "AncestryFeatName");
+      ViewBag.ClassFeatList = new SelectList(currentCharacter.CharacterClass.ClassFeats, "ClassFeatId", "ClassFeatName");
     }
 
   }
