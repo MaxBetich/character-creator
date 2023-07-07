@@ -15,7 +15,7 @@ This application is intended to function as a tool to help create and track the 
 
 ## Setup/Installation Requirements
 * Clone project from this [GitHub repository](https://github.com/MaxBetich/character-creator.git) to your desktop.
-* Navigate to the Factory directory inside this repo in your terminal and create a new file called `appsettings.json`.
+* Navigate to the CharacterCreator directory inside this repo in your terminal and create a new file called `appsettings.json`.
 * Within `appsettings.json` put in the following code, replacing the `[UID HERE]` and `[PWD HERE]` values with your own username and password for MySQL.
 
 ```json
