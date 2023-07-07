@@ -15,7 +15,7 @@ namespace CharacterCreator
 
       builder.Services.AddControllersWithViews();
 
-      builder.Services.AddDbContext<SweetsAndTreatsContext>(
+      builder.Services.AddDbContext<CharacterCreatorContext>(
                         dbContextOptions => dbContextOptions
                           .UseMySql(
                             builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
@@ -24,7 +24,7 @@ namespace CharacterCreator
                       );
 
       builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<SweetsAndTreatsContext>()
+                .AddEntityFrameworkStores<CharacterCreatorContext>()
                 .AddDefaultTokenProviders();                
 
       builder.Services.Configure<IdentityOptions>(options =>
