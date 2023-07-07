@@ -18,8 +18,9 @@ namespace CharacterCreator.Models
     public Ancestry Ancestry {get;set;}
     public Background Background {get;set;}
     public CharacterClass CharacterClass {get;set;}
-    public List<CharacterClassFeat> CharacterClassFeats {get;set;}
     public Dictionary<string,string> Skills {get;set;}
+    public List<CharacterClassFeat> CharacterClassFeats {get;set;}
+    public List<CharacterGeneralFeat> CharacterGeneralFeats {get;set;}
     public List<CharacterSkillFeat> CharacterSkillFeats {get;set;}
     public List<CharacterAncestryFeat> CharacterAncestryFeats {get;set;}
     public ApplicationUser User {get;set;}

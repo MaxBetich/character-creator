@@ -16,6 +16,8 @@ namespace CharacterCreator.Models
     public DbSet<CharacterClassFeat> CharacterClassFeats { get; set; }
     public DbSet<AncestryFeat> AncestryFeats { get; set; }
     public DbSet<CharacterAncestryFeat> CharacterAncestryFeats { get; set; }
+    public DbSet<GeneralFeat> GeneralFeats { get; set; }
+    public DbSet<CharacterGeneralFeat> CharacterGeneralFeats { get; set; }
     
     public CharacterCreatorContext(DbContextOptions options) : base(options) { }
   }
