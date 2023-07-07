@@ -23,9 +23,14 @@ namespace CharacterCreator.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      List<Character> model = _db.Characters.ToList();
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      List<Character> model = _db.Characters
+                                  .Where(entry => entry.User.Id == currentUser.Id)
+                                  .Include(e => e.CharacterClass)
+                                  .ToList();
       return View(model);
     }
 
@@ -99,5 +104,10 @@ namespace CharacterCreator.Controllers
       return View(currentCharacter);
     }
 
+    [HttpPost]
+    public ActionResult Choices(Character character)
+    {
+
+    }
   }
 }
