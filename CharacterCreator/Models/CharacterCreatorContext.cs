@@ -19,6 +19,7 @@ namespace CharacterCreator.Models
     public DbSet<CharacterSkillFeat> CharacterSkillFeats { get; set; }
     public DbSet<ClassFeat> ClassFeats { get; set; }
     public DbSet<CharacterClassFeat> CharacterClassFeats { get; set; }
+    public DbSet<CharacterClassSkill> CharacterClassSkills {get;set;}
     public DbSet<AncestryFeat> AncestryFeats { get; set; }
     public DbSet<CharacterAncestryFeat> CharacterAncestryFeats { get; set; }
     public DbSet<GeneralFeat> GeneralFeats { get; set; }

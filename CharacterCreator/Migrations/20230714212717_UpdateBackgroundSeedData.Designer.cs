@@ -3,6 +3,7 @@ using System;
 using CharacterCreator.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CharacterCreator.Migrations
 {
     [DbContext(typeof(CharacterCreatorContext))]
-    partial class CharacterCreatorContextModelSnapshot : ModelSnapshot
+    [Migration("20230714212717_UpdateBackgroundSeedData")]
+    partial class UpdateBackgroundSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -630,27 +632,6 @@ namespace CharacterCreator.Migrations
                     b.ToTable("CharacterClassFeats");
                 });
 
-            modelBuilder.Entity("CharacterCreator.Models.CharacterClassSkill", b =>
-                {
-                    b.Property<int>("CharacterClassSkillId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("CharacterClassId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SkillId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CharacterClassSkillId");
-
-                    b.HasIndex("CharacterClassId");
-
-                    b.HasIndex("SkillId");
-
-                    b.ToTable("CharacterClassSkills");
-                });
-
             modelBuilder.Entity("CharacterCreator.Models.CharacterGeneralFeat", b =>
                 {
                     b.Property<int>("CharacterGeneralFeatId")
@@ -670,27 +651,6 @@ namespace CharacterCreator.Migrations
                     b.HasIndex("GeneralFeatId");
 
                     b.ToTable("CharacterGeneralFeats");
-                });
-
-            modelBuilder.Entity("CharacterCreator.Models.CharacterSkill", b =>
-                {
-                    b.Property<int>("CharacterSkillId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("CharacterId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SkillId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CharacterSkillId");
-
-                    b.HasIndex("CharacterId");
-
-                    b.HasIndex("SkillId");
-
-                    b.ToTable("CharacterSkill");
                 });
 
             modelBuilder.Entity("CharacterCreator.Models.CharacterSkillFeat", b =>
@@ -821,10 +781,20 @@ namespace CharacterCreator.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("CharacterClassId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CharacterId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SkillName")
                         .HasColumnType("longtext");
 
                     b.HasKey("SkillId");
+
+                    b.HasIndex("CharacterClassId");
+
+                    b.HasIndex("CharacterId");
 
                     b.ToTable("Skills");
 
@@ -1280,25 +1250,6 @@ namespace CharacterCreator.Migrations
                     b.Navigation("ClassFeat");
                 });
 
-            modelBuilder.Entity("CharacterCreator.Models.CharacterClassSkill", b =>
-                {
-                    b.HasOne("CharacterCreator.Models.CharacterClass", "CharacterClass")
-                        .WithMany("CharacterClassSkills")
-                        .HasForeignKey("CharacterClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CharacterCreator.Models.Skill", "Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CharacterClass");
-
-                    b.Navigation("Skill");
-                });
-
             modelBuilder.Entity("CharacterCreator.Models.CharacterGeneralFeat", b =>
                 {
                     b.HasOne("CharacterCreator.Models.Character", "Character")
@@ -1316,25 +1267,6 @@ namespace CharacterCreator.Migrations
                     b.Navigation("Character");
 
                     b.Navigation("GeneralFeat");
-                });
-
-            modelBuilder.Entity("CharacterCreator.Models.CharacterSkill", b =>
-                {
-                    b.HasOne("CharacterCreator.Models.Character", "Character")
-                        .WithMany("CharacterSkills")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CharacterCreator.Models.Skill", "Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Character");
-
-                    b.Navigation("Skill");
                 });
 
             modelBuilder.Entity("CharacterCreator.Models.CharacterSkillFeat", b =>
@@ -1369,6 +1301,17 @@ namespace CharacterCreator.Migrations
                         .IsRequired();
 
                     b.Navigation("CharacterClass");
+                });
+
+            modelBuilder.Entity("CharacterCreator.Models.Skill", b =>
+                {
+                    b.HasOne("CharacterCreator.Models.CharacterClass", null)
+                        .WithMany("Skills")
+                        .HasForeignKey("CharacterClassId");
+
+                    b.HasOne("CharacterCreator.Models.Character", null)
+                        .WithMany("Skills")
+                        .HasForeignKey("CharacterId");
                 });
 
             modelBuilder.Entity("CharacterCreator.Models.SkillFeat", b =>
@@ -1475,16 +1418,16 @@ namespace CharacterCreator.Migrations
 
                     b.Navigation("CharacterSkillFeats");
 
-                    b.Navigation("CharacterSkills");
+                    b.Navigation("Skills");
                 });
 
             modelBuilder.Entity("CharacterCreator.Models.CharacterClass", b =>
                 {
-                    b.Navigation("CharacterClassSkills");
-
                     b.Navigation("Characters");
 
                     b.Navigation("ClassFeats");
+
+                    b.Navigation("Skills");
                 });
 
             modelBuilder.Entity("CharacterCreator.Models.ClassFeat", b =>

@@ -21,7 +21,7 @@ namespace CharacterCreator.Models
     public Background Background {get;set;}
     public int CharacterClassId {get;set;}
     public CharacterClass CharacterClass {get;set;}
-    public List<Skill> Skills {get;set;}
+    public List<CharacterSkill> CharacterSkills {get;set;}
     public List<CharacterClassFeat> CharacterClassFeats {get;set;}
     public List<CharacterGeneralFeat> CharacterGeneralFeats {get;set;}
     public List<CharacterSkillFeat> CharacterSkillFeats {get;set;}
