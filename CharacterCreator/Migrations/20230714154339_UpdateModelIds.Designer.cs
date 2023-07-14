@@ -3,6 +3,7 @@ using System;
 using CharacterCreator.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CharacterCreator.Migrations
 {
     [DbContext(typeof(CharacterCreatorContext))]
-    partial class CharacterCreatorContextModelSnapshot : ModelSnapshot
+    [Migration("20230714154339_UpdateModelIds")]
+    partial class UpdateModelIds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,30 +159,6 @@ namespace CharacterCreator.Migrations
                     b.HasIndex("SkillFeatId");
 
                     b.ToTable("Backgrounds");
-                });
-
-            modelBuilder.Entity("CharacterCreator.Models.Boost", b =>
-                {
-                    b.Property<int>("BoostId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("AbilityBoost")
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("AncestryId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BackgroundId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BoostId");
-
-                    b.HasIndex("AncestryId");
-
-                    b.HasIndex("BackgroundId");
-
-                    b.ToTable("Boost");
                 });
 
             modelBuilder.Entity("CharacterCreator.Models.Character", b =>
@@ -378,25 +356,6 @@ namespace CharacterCreator.Migrations
                     b.ToTable("ClassFeats");
                 });
 
-            modelBuilder.Entity("CharacterCreator.Models.Flaw", b =>
-                {
-                    b.Property<int>("FlawId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("AbilityFlaw")
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("AncestryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FlawId");
-
-                    b.HasIndex("AncestryId");
-
-                    b.ToTable("Flaw");
-                });
-
             modelBuilder.Entity("CharacterCreator.Models.GeneralFeat", b =>
                 {
                     b.Property<int>("GeneralFeatId")
@@ -591,17 +550,6 @@ namespace CharacterCreator.Migrations
                     b.Navigation("SkillFeat");
                 });
 
-            modelBuilder.Entity("CharacterCreator.Models.Boost", b =>
-                {
-                    b.HasOne("CharacterCreator.Models.Ancestry", null)
-                        .WithMany("Boosts")
-                        .HasForeignKey("AncestryId");
-
-                    b.HasOne("CharacterCreator.Models.Background", null)
-                        .WithMany("Boosts")
-                        .HasForeignKey("BackgroundId");
-                });
-
             modelBuilder.Entity("CharacterCreator.Models.Character", b =>
                 {
                     b.HasOne("CharacterCreator.Models.Ancestry", "Ancestry")
@@ -726,13 +674,6 @@ namespace CharacterCreator.Migrations
                     b.Navigation("CharacterClass");
                 });
 
-            modelBuilder.Entity("CharacterCreator.Models.Flaw", b =>
-                {
-                    b.HasOne("CharacterCreator.Models.Ancestry", null)
-                        .WithMany("Flaws")
-                        .HasForeignKey("AncestryId");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -788,11 +729,7 @@ namespace CharacterCreator.Migrations
                 {
                     b.Navigation("AncestryFeats");
 
-                    b.Navigation("Boosts");
-
                     b.Navigation("Characters");
-
-                    b.Navigation("Flaws");
                 });
 
             modelBuilder.Entity("CharacterCreator.Models.AncestryFeat", b =>
@@ -802,8 +739,6 @@ namespace CharacterCreator.Migrations
 
             modelBuilder.Entity("CharacterCreator.Models.Background", b =>
                 {
-                    b.Navigation("Boosts");
-
                     b.Navigation("Characters");
                 });
 

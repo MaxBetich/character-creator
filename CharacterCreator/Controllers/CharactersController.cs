@@ -87,9 +87,9 @@ namespace CharacterCreator.Controllers
       Ancestry currentAncestry = currentCharacter.Ancestry;
       Background currentBackground = currentCharacter.Background;
       CharacterClass currentClass = currentCharacter.CharacterClass;
-      List<string> ancestryBoosts = currentAncestry.Boosts;
-      List<string> backgroundBoosts = currentBackground.Boosts;
-      List<string> ancestryFlaws = currentAncestry.Flaws;
+      List<Boost> ancestryBoosts = currentAncestry.Boosts;
+      List<Boost> backgroundBoosts = currentBackground.Boosts;
+      List<Flaw> ancestryFlaws = currentAncestry.Flaws;
       if (ancestryFlaws.Count != 0)
       {
         ViewBag.AncestryFlaws = ancestryFlaws;

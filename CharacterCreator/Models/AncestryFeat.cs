@@ -9,6 +9,7 @@ namespace CharacterCreator.Models
     public string AncestryFeatName {get;set;}
     public string AncestryFeatDescription {get;set;}
     public int RequiredLevel {get;set;}
+    public int AncestryId {get;set;}
     public Ancestry Ancestry {get;set;}
     public List<CharacterAncestryFeat> CharacterAncestryFeats {get;set;}
   }

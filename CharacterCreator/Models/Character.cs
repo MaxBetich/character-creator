@@ -15,8 +15,11 @@ namespace CharacterCreator.Models
     public int Intelligence {get;set;}
     public int Wisdom {get;set;}
     public int Charisma {get;set;}
+    public int AncestryId {get;set;}
     public Ancestry Ancestry {get;set;}
+    public int BackgroundId {get;set;}
     public Background Background {get;set;}
+    public int CharacterClassId {get;set;}
     public CharacterClass CharacterClass {get;set;}
     public Dictionary<string,string> Skills = new Dictionary<string, string>() {};
     public List<CharacterClassFeat> CharacterClassFeats {get;set;}
