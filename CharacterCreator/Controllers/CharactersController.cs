@@ -90,8 +90,12 @@ namespace CharacterCreator.Controllers
       List<Boost> ancestryBoosts = _db.Boosts
                                         .Where(e =>e.AncestryBoosts == currentAncestry.AncestryBoosts)
                                         .ToList();
-      List<Boost> backgroundBoosts = currentBackground.Boosts;
-      List<Flaw> ancestryFlaws = currentAncestry.Flaws;
+      List<Boost> backgroundBoosts = _db.Boosts
+                                        .Where(e =>e.BackgroundBoosts == currentBackground.BackgroundBoosts)
+                                        .ToList();
+      List<Flaw> ancestryFlaws = _db.Flaws
+                                    .Where(e => e.AncestryFlaws == currentAncestry.AncestryFlaws)
+                                    .ToList();
       if (ancestryFlaws.Count != 0)
       {
         ViewBag.AncestryFlaws = ancestryFlaws;

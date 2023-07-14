@@ -12,7 +12,7 @@ namespace CharacterCreator.Models
     public string Size {get;set;}
     public string Speed {get;set;}
     public List<AncestryBoost> AncestryBoosts {get;set;}
-    public List<Flaw> Flaws {get;set;}
+    public List<AncestryFlaw> AncestryFlaws {get;set;}
     public string Trait {get;set;}
     public List<AncestryFeat> AncestryFeats {get;set;}
     public List<Character> Characters {get;set;}

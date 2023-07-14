@@ -3,6 +3,7 @@ using System;
 using CharacterCreator.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CharacterCreator.Migrations
 {
     [DbContext(typeof(CharacterCreatorContext))]
-    partial class CharacterCreatorContextModelSnapshot : ModelSnapshot
+    [Migration("20230714181522_UpdateBoosts")]
+    partial class UpdateBoosts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,27 +94,6 @@ namespace CharacterCreator.Migrations
                     b.HasIndex("AncestryId");
 
                     b.ToTable("AncestryFeats");
-                });
-
-            modelBuilder.Entity("CharacterCreator.Models.AncestryFlaw", b =>
-                {
-                    b.Property<int>("AncestryFlawId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("AncestryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FlawId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AncestryFlawId");
-
-                    b.HasIndex("AncestryId");
-
-                    b.HasIndex("FlawId");
-
-                    b.ToTable("AncestryFlaw");
                 });
 
             modelBuilder.Entity("CharacterCreator.Models.ApplicationUser", b =>
@@ -219,7 +200,7 @@ namespace CharacterCreator.Migrations
 
                     b.HasIndex("BoostId");
 
-                    b.ToTable("BackgroundBoosts");
+                    b.ToTable("BackgroundBoost");
                 });
 
             modelBuilder.Entity("CharacterCreator.Models.Boost", b =>
@@ -477,7 +458,12 @@ namespace CharacterCreator.Migrations
                     b.Property<string>("AbilityFlaw")
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("AncestryId")
+                        .HasColumnType("int");
+
                     b.HasKey("FlawId");
+
+                    b.HasIndex("AncestryId");
 
                     b.ToTable("Flaws");
 
@@ -754,25 +740,6 @@ namespace CharacterCreator.Migrations
                     b.Navigation("Ancestry");
                 });
 
-            modelBuilder.Entity("CharacterCreator.Models.AncestryFlaw", b =>
-                {
-                    b.HasOne("CharacterCreator.Models.Ancestry", "Ancestry")
-                        .WithMany("AncestryFlaws")
-                        .HasForeignKey("AncestryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CharacterCreator.Models.Flaw", "Flaw")
-                        .WithMany("AncestryFlaws")
-                        .HasForeignKey("FlawId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ancestry");
-
-                    b.Navigation("Flaw");
-                });
-
             modelBuilder.Entity("CharacterCreator.Models.Background", b =>
                 {
                     b.HasOne("CharacterCreator.Models.SkillFeat", "SkillFeat")
@@ -927,6 +894,13 @@ namespace CharacterCreator.Migrations
                     b.Navigation("CharacterClass");
                 });
 
+            modelBuilder.Entity("CharacterCreator.Models.Flaw", b =>
+                {
+                    b.HasOne("CharacterCreator.Models.Ancestry", null)
+                        .WithMany("Flaws")
+                        .HasForeignKey("AncestryId");
+                });
+
             modelBuilder.Entity("CharacterCreator.Models.Skill", b =>
                 {
                     b.HasOne("CharacterCreator.Models.Background", null)
@@ -1010,9 +984,9 @@ namespace CharacterCreator.Migrations
 
                     b.Navigation("AncestryFeats");
 
-                    b.Navigation("AncestryFlaws");
-
                     b.Navigation("Characters");
+
+                    b.Navigation("Flaws");
                 });
 
             modelBuilder.Entity("CharacterCreator.Models.AncestryFeat", b =>
@@ -1061,11 +1035,6 @@ namespace CharacterCreator.Migrations
             modelBuilder.Entity("CharacterCreator.Models.ClassFeat", b =>
                 {
                     b.Navigation("CharacterClassFeats");
-                });
-
-            modelBuilder.Entity("CharacterCreator.Models.Flaw", b =>
-                {
-                    b.Navigation("AncestryFlaws");
                 });
 
             modelBuilder.Entity("CharacterCreator.Models.GeneralFeat", b =>

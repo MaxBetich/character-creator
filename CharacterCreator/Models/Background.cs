@@ -8,7 +8,7 @@ namespace CharacterCreator.Models
     public int BackgroundId {get;set;}
     public string BackgroundName {get;set;}
     public string BackgroundDescription {get;set;}
-    public List<Boost> Boosts {get;set;}
+    public List<BackgroundBoost> BackgroundBoosts {get;set;}
     public List<Skill> Skills {get;set;}
     public int SkillFeatId {get;set;}
     public SkillFeat SkillFeat {get;set;}

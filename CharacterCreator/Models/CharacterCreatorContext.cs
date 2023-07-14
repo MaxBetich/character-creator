@@ -7,6 +7,7 @@ namespace CharacterCreator.Models
   {
     public DbSet<Boost> Boosts {get;set;}
     public DbSet<AncestryBoost> AncestryBoosts {get;set;}
+    public DbSet<BackgroundBoost> BackgroundBoosts {get;set;}
     public DbSet<Flaw> Flaws {get;set;}
     public DbSet<Character> Characters { get; set; }
     public DbSet<CharacterClass> CharacterClasses { get; set; }
