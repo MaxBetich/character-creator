@@ -3,6 +3,7 @@ using System;
 using CharacterCreator.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CharacterCreator.Migrations
 {
     [DbContext(typeof(CharacterCreatorContext))]
-    partial class CharacterCreatorContextModelSnapshot : ModelSnapshot
+    [Migration("20230714190944_AddAncestry")]
+    partial class AddAncestry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,17 +58,7 @@ namespace CharacterCreator.Migrations
                             Size = "medium",
                             Speed = "25 feet",
                             StartingHitpoints = 8,
-                            Trait = "Humans have no distinctive physical characteristics."
-                        },
-                        new
-                        {
-                            AncestryId = 2,
-                            AncestryDescription = "Dwarves are squat, hardy folk known for their skill at metalworking, and most at home in their ancient undergound cities",
-                            AncestryName = "Dwarf",
-                            Size = "medium",
-                            Speed = "20 feet",
-                            StartingHitpoints = 10,
-                            Trait = "Darkvision: Dwarves can see in darkness and dim light just as well as in bright light, though their vision in such conditions is limited to black and white."
+                            Trait = "Humans have no distinctive physical characteristics"
                         });
                 });
 

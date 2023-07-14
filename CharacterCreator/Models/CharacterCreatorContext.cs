@@ -50,7 +50,8 @@ namespace CharacterCreator.Models
         );
       builder.Entity<Ancestry>()
         .HasData(
-          new Ancestry {AncestryId = 1, AncestryName = "Human", AncestryDescription = "The most common ancestry, humans have a variety of strengths and are best represented by their versatility", StartingHitpoints = 8, Size = "medium", Speed = "25 feet", Trait = "Humans have no distinctive physical characteristics"}
+          new Ancestry {AncestryId = 1, AncestryName = "Human", AncestryDescription = "The most common ancestry, humans have a variety of strengths and are best represented by their versatility", StartingHitpoints = 8, Size = "medium", Speed = "25 feet", Trait = "Humans have no distinctive physical characteristics."},
+          new Ancestry {AncestryId = 2, AncestryName = "Dwarf", AncestryDescription = "Dwarves are squat, hardy folk known for their skill at metalworking, and most at home in their ancient undergound cities", StartingHitpoints = 10, Size = "medium", Speed = "20 feet", Trait = "Darkvision: Dwarves can see in darkness and dim light just as well as in bright light, though their vision in such conditions is limited to black and white."}
         );
     }
   }
