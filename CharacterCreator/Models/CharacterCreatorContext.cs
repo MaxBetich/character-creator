@@ -48,6 +48,10 @@ namespace CharacterCreator.Models
           new Flaw {FlawId = 6, AbilityFlaw = "charisma"},
           new Flaw {FlawId = 7, AbilityFlaw = "free"}
         );
+      builder.Entity<Ancestry>()
+        .HasData(
+          new Ancestry {AncestryId = 1, AncestryName = "Human", AncestryDescription = "The most common ancestry, humans have a variety of strengths and are best represented by their versatility", StartingHitpoints = 8, Size = "medium", Speed = "25 feet", Trait = "Humans have no distinctive physical characteristics"}
+        );
     }
   }
 }
