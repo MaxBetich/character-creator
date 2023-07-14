@@ -13,6 +13,7 @@ namespace CharacterCreator.Models
     public DbSet<CharacterClass> CharacterClasses { get; set; }
     public DbSet<Ancestry> Ancestries { get; set; }
     public DbSet<Background> Backgrounds { get; set; }
+    public DbSet<BackgroundSkill> BackgroundSkills {get;set;}
     public DbSet<Skill> Skills {get;set;}
     public DbSet<SkillFeat> SkillFeats { get; set; }
     public DbSet<CharacterSkillFeat> CharacterSkillFeats { get; set; }
@@ -69,6 +70,25 @@ namespace CharacterCreator.Models
         .HasData(
           new AncestryFlaw {AncestryFlawId = 1, AncestryId = 2, FlawId = 6},
           new AncestryFlaw {AncestryFlawId = 2, AncestryId = 3, FlawId = 3}
+        );
+      builder.Entity<Skill>()
+        .HasData(
+          new Skill {SkillId = 1, SkillName = "Acrobatics"},
+          new Skill {SkillId = 2, SkillName = "Arcana"},
+          new Skill {SkillId = 3, SkillName = "Athletics"},
+          new Skill {SkillId = 4, SkillName = "Crafting"},
+          new Skill {SkillId = 5, SkillName = "Deception"},
+          new Skill {SkillId = 6, SkillName = "Diplomacy"},
+          new Skill {SkillId = 7, SkillName = "Intimidation"},
+          new Skill {SkillId = 8, SkillName = "Medicine"},
+          new Skill {SkillId = 9, SkillName = "Nature"},
+          new Skill {SkillId = 10, SkillName = "Occultism"},
+          new Skill {SkillId = 11, SkillName = "Performance"},
+          new Skill {SkillId = 12, SkillName = "Religion"},
+          new Skill {SkillId = 13, SkillName = "Society"},
+          new Skill {SkillId = 14, SkillName = "Stealth"},
+          new Skill {SkillId = 15, SkillName = "Survival"},
+          new Skill {SkillId = 16, SkillName = "Thievery"}
         );
     }
   }
