@@ -88,7 +88,43 @@ namespace CharacterCreator.Models
           new Skill {SkillId = 13, SkillName = "Society"},
           new Skill {SkillId = 14, SkillName = "Stealth"},
           new Skill {SkillId = 15, SkillName = "Survival"},
-          new Skill {SkillId = 16, SkillName = "Thievery"}
+          new Skill {SkillId = 16, SkillName = "Thievery"},
+          new Skill {SkillId = 17, SkillName = "Scribing Lore"},
+          new Skill {SkillId = 18, SkillName = "Underworld Lore"},
+          new Skill {SkillId = 19, SkillName = "Terrain Lore"}
+        );
+      builder.Entity<SkillFeat>()
+        .HasData(
+          new SkillFeat {SkillFeatId = 1, SkillFeatName = "Student of the Canon", SkillFeatDescription = "You've researched many faiths enough to recognize notions about them that are unlikely to be true. If you roll a critical failure at a Religion check to decipher writing of a religious nature or to recall knowledge about the tenets of faiths, you get a failure instead. When attempting to recall knowledge about the tenets of your own faith, if you roll a failure, you get a success instead, and if you roll a success, you get a critical success instead.", RequiredLevel = 1, PrerequisiteTraining = "trained", SkillId = 12},
+          new SkillFeat {SkillFeatId = 2, SkillFeatName = "Experienced Smuggler", SkillFeatDescription = "You often smuggle things past the authorities. When the GM rolls your Stealth check to see if a passive observer notices a small item you have concealed, the GM uses the number rolled or 10—whichever is higher—as the result of your die roll, adding it to your Stealth modifier to determine your Stealth check result. If you're a master in Stealth, the GM uses the number rolled or 15, and if you're legendary in Stealth, you automatically succeed at hiding a small concealed item from passive observers. This provides no benefits when a creature attempts a Perception check while actively searching you for hidden items. Due to your smuggling skill, you're more likely to find more lucrative smuggling jobs when using Underworld Lore to Earn Income.", RequiredLevel = 1, PrerequisiteTraining = "trained", SkillId = 14},
+          new SkillFeat {SkillFeatId = 3, SkillFeatName = "Forager", SkillFeatDescription = "While using Survival to Subsist, if you roll any result worse than a success, you get a success. On a success, you can provide subsistence living for yourself and four additional creatures, and on a critical success, you can take care of twice as many creatures as on a success. Each time your proficiency rank in Survival increases, double the number of additional creatures you can take care of on a success (to eight if you're an expert, 16 if you're a master, or 32 if you're legendary). You can choose to care for half the number of additional creatures and provide a comfortable living instead of subsistence living. Multiple smaller creatures or creatures with significantly smaller appetites than a human are counted as a single creature for this feat, and larger creatures or those with significantly greater appetites each count as multiple creatures. The GM determines how much a non-human creature needs to eat.", RequiredLevel = 1, PrerequisiteTraining = "trained", SkillId = 15}          
+        );
+      builder.Entity<Background>()
+        .HasData(
+          new Background {BackgroundId = 1, BackgroundName = "Acolyte", BackgroundDescription = "You spent your early days in a religious monastery or cloister. You may have traveled out into the world to spread the message of your religion or because you cast away the teachings of your faith, but deep down you'll always carry within you the lessons you learned.", SkillFeatId = 1},
+          new Background {BackgroundId = 2, BackgroundName = "Criminal", BackgroundDescription = "As an unscrupulous independent or as a member of an underworld organization, you lived a life of crime. You might have become an adventurer to seek redemption, to escape the law, or simply to get access to bigger and better loot.", SkillFeatId = 2},
+          new Background {BackgroundId = 3, BackgroundName = "Scout", BackgroundDescription = "You called the wilderness home as you found trails and guided travelers. Your wanderlust could have called you to the adventuring life, or perhaps you served as a scout for soldiers and found you liked battle.", SkillFeatId = 3}
+        );
+      builder.Entity<BackgroundBoost>()
+        .HasData(
+          new BackgroundBoost {BackgroundBoostId = 1, BackgroundId = 1, BoostId = 4},
+          new BackgroundBoost {BackgroundBoostId = 2, BackgroundId = 1, BoostId = 5},
+          new BackgroundBoost {BackgroundBoostId = 3, BackgroundId = 1, BoostId = 7},
+          new BackgroundBoost {BackgroundBoostId = 4, BackgroundId = 2, BoostId = 2},
+          new BackgroundBoost {BackgroundBoostId = 5, BackgroundId = 2, BoostId = 4},
+          new BackgroundBoost {BackgroundBoostId = 6, BackgroundId = 2, BoostId = 7},
+          new BackgroundBoost {BackgroundBoostId = 7, BackgroundId = 3, BoostId = 2},
+          new BackgroundBoost {BackgroundBoostId = 8, BackgroundId = 3, BoostId = 5},
+          new BackgroundBoost {BackgroundBoostId = 9, BackgroundId = 3, BoostId = 7}
+        );
+      builder.Entity<BackgroundSkill>()
+        .HasData(
+          new BackgroundSkill {BackgroundSkillId = 1, BackgroundId = 1, SkillId = 12},
+          new BackgroundSkill {BackgroundSkillId = 2, BackgroundId = 1, SkillId = 17},
+          new BackgroundSkill {BackgroundSkillId = 3, BackgroundId = 2, SkillId = 14},
+          new BackgroundSkill {BackgroundSkillId = 4, BackgroundId = 2, SkillId = 18},
+          new BackgroundSkill {BackgroundSkillId = 5, BackgroundId = 3, SkillId = 15},
+          new BackgroundSkill {BackgroundSkillId = 6, BackgroundId = 3, SkillId = 19}
         );
     }
   }
