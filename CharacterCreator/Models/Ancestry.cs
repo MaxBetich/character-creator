@@ -11,7 +11,7 @@ namespace CharacterCreator.Models
     public int StartingHitpoints {get;set;}
     public string Size {get;set;}
     public string Speed {get;set;}
-    public List<Boost> Boosts {get;set;}
+    public List<AncestryBoost> AncestryBoosts {get;set;}
     public List<Flaw> Flaws {get;set;}
     public string Trait {get;set;}
     public List<AncestryFeat> AncestryFeats {get;set;}

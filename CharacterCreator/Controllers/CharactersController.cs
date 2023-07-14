@@ -87,7 +87,9 @@ namespace CharacterCreator.Controllers
       Ancestry currentAncestry = currentCharacter.Ancestry;
       Background currentBackground = currentCharacter.Background;
       CharacterClass currentClass = currentCharacter.CharacterClass;
-      List<Boost> ancestryBoosts = currentAncestry.Boosts;
+      List<Boost> ancestryBoosts = _db.Boosts
+                                        .Where(e =>e.AncestryBoosts == currentAncestry.AncestryBoosts)
+                                        .ToList();
       List<Boost> backgroundBoosts = currentBackground.Boosts;
       List<Flaw> ancestryFlaws = currentAncestry.Flaws;
       if (ancestryFlaws.Count != 0)
