@@ -51,7 +51,24 @@ namespace CharacterCreator.Models
       builder.Entity<Ancestry>()
         .HasData(
           new Ancestry {AncestryId = 1, AncestryName = "Human", AncestryDescription = "The most common ancestry, humans have a variety of strengths and are best represented by their versatility", StartingHitpoints = 8, Size = "medium", Speed = "25 feet", Trait = "Humans have no distinctive physical characteristics."},
-          new Ancestry {AncestryId = 2, AncestryName = "Dwarf", AncestryDescription = "Dwarves are squat, hardy folk known for their skill at metalworking, and most at home in their ancient undergound cities", StartingHitpoints = 10, Size = "medium", Speed = "20 feet", Trait = "Darkvision: Dwarves can see in darkness and dim light just as well as in bright light, though their vision in such conditions is limited to black and white."}
+          new Ancestry {AncestryId = 2, AncestryName = "Dwarf", AncestryDescription = "Dwarves are squat, hardy folk known for their skill at metalworking, and most at home in their ancient undergound cities", StartingHitpoints = 10, Size = "medium", Speed = "20 feet", Trait = "Darkvision: Dwarves can see in darkness and dim light just as well as in bright light, though their vision in such conditions is limited to black and white."},
+          new Ancestry {AncestryId = 3, AncestryName = "Elf", AncestryDescription = "Fair folk, taller and sleeker than humans and having an innate connection to the magical currents of the world.", StartingHitpoints = 6, Size = "medium", Speed = "30 feet", Trait = "Low-Light Vision: Elves can see in dim light as though it were bright light, and ignore the concealed condition due to dim light."}
+        );
+      builder.Entity<AncestryBoost>()
+        .HasData(
+          new AncestryBoost {AncestryBoostId = 1, AncestryId = 1, BoostId = 7},
+          new AncestryBoost {AncestryBoostId = 2, AncestryId = 1, BoostId = 7},
+          new AncestryBoost {AncestryBoostId = 3, AncestryId = 2, BoostId = 3},
+          new AncestryBoost {AncestryBoostId = 4, AncestryId = 2, BoostId = 5},
+          new AncestryBoost {AncestryBoostId = 5, AncestryId = 2, BoostId = 7},
+          new AncestryBoost {AncestryBoostId = 6, AncestryId = 3, BoostId = 2},
+          new AncestryBoost {AncestryBoostId = 7, AncestryId = 3, BoostId = 4},
+          new AncestryBoost {AncestryBoostId = 8, AncestryId = 3, BoostId = 7}
+        );
+      builder.Entity<AncestryFlaw>()
+        .HasData(
+          new AncestryFlaw {AncestryFlawId = 1, AncestryId = 2, FlawId = 6},
+          new AncestryFlaw {AncestryFlawId = 2, AncestryId = 3, FlawId = 3}
         );
     }
   }
