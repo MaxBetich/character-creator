@@ -102,9 +102,9 @@ namespace CharacterCreator.Controllers
       List<BackgroundBoost> backgroundBoosts = _db.BackgroundBoosts
                                         .Where(e =>e.BackgroundId == currentBackground.BackgroundId)
                                         .Include(e => e.Boost)
-                                        .ThenInclude(e => e.AbilityBoost)
+                                        // .ThenInclude(e => e.AbilityBoost)
                                         .ToList();
-      ViewBag.BackgroundBoosts = new SelectList(backgroundBoosts);
+      ViewBag.BackgroundBoosts = backgroundBoosts;
       // List<Flaw> ancestryFlaws = _db.Flaws
       //                               .Where(e => e.AncestryFlaws == currentAncestry.AncestryFlaws)
       //                               .ToList();

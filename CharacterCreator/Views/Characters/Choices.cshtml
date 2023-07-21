@@ -33,7 +33,10 @@
     <li>@join.Boost.AbilityBoost</li>
   }
 </ul>
-
+@foreach (BackgroundBoost join in ViewBag.BackgroundBoosts)
+{
+  <p>@join.Boost.AbilityBoost</p>
+}
 @using (Html.BeginForm())
 {
   
