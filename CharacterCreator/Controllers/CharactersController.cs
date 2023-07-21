@@ -93,13 +93,18 @@ namespace CharacterCreator.Controllers
                                         .Include(e => e.CharacterClass)
                                         .ThenInclude(e => e.ClassFeats)
                                         .FirstOrDefault(e => e.CharacterId == id);
-      // Ancestry currentAncestry = currentCharacter.Ancestry;
-      // Background currentBackground = currentCharacter.Background;
-      // CharacterClass currentClass = currentCharacter.CharacterClass;
+      Ancestry currentAncestry = currentCharacter.Ancestry;
+      Background currentBackground = currentCharacter.Background;
+      CharacterClass currentClass = currentCharacter.CharacterClass;
+
+      // ViewBag.AncestryBoostId = new SelectList(currentAncestry.AncestryBoosts, "AncestryBoostId", "AbilityBoost");
       // List<AncestryBoost> ancestryBoosts = currentAncestry.AncestryBoosts;
-      // List<Boost> backgroundBoosts = _db.Boosts
-      //                                   .Where(e =>e.BackgroundBoosts == currentBackground.BackgroundBoosts)
-      //                                   .ToList();
+      List<BackgroundBoost> backgroundBoosts = _db.BackgroundBoosts
+                                        .Where(e =>e.BackgroundId == currentBackground.BackgroundId)
+                                        .Include(e => e.Boost)
+                                        .ThenInclude(e => e.AbilityBoost)
+                                        .ToList();
+      ViewBag.BackgroundBoosts = new SelectList(backgroundBoosts);
       // List<Flaw> ancestryFlaws = _db.Flaws
       //                               .Where(e => e.AncestryFlaws == currentAncestry.AncestryFlaws)
       //                               .ToList();
@@ -135,8 +140,9 @@ namespace CharacterCreator.Controllers
       character.LightArmorProficiency = character.CharacterClass.LightArmorProficiency;
       character.MediumArmorProficiency = character.CharacterClass.MediumArmorProficiency;
       character.HeavyArmorProficiency = character.CharacterClass.HeavyArmorProficiency;
-      int conModifier = (character.Constitution - 10)/2;
-      character.Hitpoints = character.Ancestry.StartingHitpoints + character.CharacterClass.ClassHitpoints + Math.Floor(conModifier);
+      decimal conModifier = (character.Constitution - 10)/2;
+      int conHp = (int)Math.Floor(conModifier);
+      character.Hitpoints = character.Ancestry.StartingHitpoints + character.CharacterClass.ClassHitpoints + conHp;
       _db.Characters.Update(character);
       _db.SaveChanges();
       return RedirectToAction("Details", new {id = id});
