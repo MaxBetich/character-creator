@@ -15,7 +15,7 @@ else
   <ul>
     @foreach (Character character in Model)
     {
-      <li>@Html.ActionLink($"{character.CharacterName}", "Details", new { id = character.CharacterId }) | @character.CharacterClass | Level @character.Level</li>
+      <li>@Html.ActionLink($"{character.CharacterName}", "Details", new { id = character.CharacterId }) | @character.CharacterClass.CharacterClassName | Level @character.Level</li>
     }
   </ul>
 }

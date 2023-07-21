@@ -87,26 +87,24 @@ namespace CharacterCreator.Controllers
       Ancestry currentAncestry = currentCharacter.Ancestry;
       Background currentBackground = currentCharacter.Background;
       CharacterClass currentClass = currentCharacter.CharacterClass;
-      List<Boost> ancestryBoosts = _db.Boosts
-                                        .Where(e =>e.AncestryBoosts == currentAncestry.AncestryBoosts)
-                                        .ToList();
-      List<Boost> backgroundBoosts = _db.Boosts
-                                        .Where(e =>e.BackgroundBoosts == currentBackground.BackgroundBoosts)
-                                        .ToList();
-      List<Flaw> ancestryFlaws = _db.Flaws
-                                    .Where(e => e.AncestryFlaws == currentAncestry.AncestryFlaws)
-                                    .ToList();
-      if (ancestryFlaws.Count != 0)
-      {
-        ViewBag.AncestryFlaws = ancestryFlaws;
-      }
-      ViewBag.Ancestry = currentAncestry;
-      ViewBag.Background = currentBackground;
-      ViewBag.Class = currentClass;
-      ViewBag.AncestryBoosts = ancestryBoosts;
-      ViewBag.BackgroundBoosts = backgroundBoosts;
-      ViewBag.AncestryFeatList = new SelectList(currentAncestry.AncestryFeats, "AncestryFeatId", "AncestryFeatName");
-      ViewBag.ClassFeatList = new SelectList(currentClass.ClassFeats, "ClassFeatId", "ClassFeatName");
+      List<Boost> ancestryBoosts = currentAncestry.AncestryBoosts.;
+      // List<Boost> backgroundBoosts = _db.Boosts
+      //                                   .Where(e =>e.BackgroundBoosts == currentBackground.BackgroundBoosts)
+      //                                   .ToList();
+      // List<Flaw> ancestryFlaws = _db.Flaws
+      //                               .Where(e => e.AncestryFlaws == currentAncestry.AncestryFlaws)
+      //                               .ToList();
+      // if (ancestryFlaws.Count != 0)
+      // {
+      //   ViewBag.AncestryFlaws = ancestryFlaws;
+      // }
+      // ViewBag.Ancestry = currentAncestry;
+      // ViewBag.Background = currentBackground;
+      // ViewBag.Class = currentClass;
+      // ViewBag.AncestryBoosts = ancestryBoosts;
+      // ViewBag.BackgroundBoosts = backgroundBoosts;
+      // ViewBag.AncestryFeatList = new SelectList(currentAncestry.AncestryFeats, "AncestryFeatId", "AncestryFeatName");
+      // ViewBag.ClassFeatList = new SelectList(currentClass.ClassFeats, "ClassFeatId", "ClassFeatName");
       return View(currentCharacter);
     }
 
