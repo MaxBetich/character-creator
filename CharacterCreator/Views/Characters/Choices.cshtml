@@ -25,3 +25,12 @@
     }
   </ul>
 }
+
+<h2>@Model.Background.BackgroundName has the following ability boosts:</h2>
+<ul>
+  @foreach (BackgroundBoost join in Model.Background.BackgroundBoosts)
+  {
+    <li>@join.Boost.AbilityBoost</li>
+  }
+</ul>
+

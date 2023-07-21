@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using System;
 using Microsoft.EntityFrameworkCore.Query;
 
 namespace CharacterCreator.Controllers
@@ -123,6 +124,19 @@ namespace CharacterCreator.Controllers
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       character.User = currentUser;
       int id = character.CharacterId;
+      character.PerceptionProficiency = character.CharacterClass.PerceptionProficiency;
+      character.FortitudeSaveProficiency = character.CharacterClass.FortitudeSaveProficiency;
+      character.WillSaveProficiency = character.CharacterClass.WillSaveProficiency;
+      character.UnarmedProficiency = character.CharacterClass.UnarmedProficiency;
+      character.SimpleProficiency = character.CharacterClass.SimpleProficiency;
+      character.MartialProficiency = character.CharacterClass.MartialProficiency;
+      character.AdvancedProficiency = character.CharacterClass.AdvancedProficiency;
+      character.UnarmoredProficiency = character.CharacterClass.UnarmoredProficiency;
+      character.LightArmorProficiency = character.CharacterClass.LightArmorProficiency;
+      character.MediumArmorProficiency = character.CharacterClass.MediumArmorProficiency;
+      character.HeavyArmorProficiency = character.CharacterClass.HeavyArmorProficiency;
+      int conModifier = (character.Constitution - 10)/2;
+      character.Hitpoints = character.Ancestry.StartingHitpoints + character.CharacterClass.ClassHitpoints + Math.Floor(conModifier);
       _db.Characters.Update(character);
       _db.SaveChanges();
       return RedirectToAction("Details", new {id = id});
