@@ -80,14 +80,19 @@ namespace CharacterCreator.Controllers
       Character currentCharacter = _db.Characters
                                         .Include(e => e.Ancestry)
                                         .ThenInclude(e => e.AncestryFeats)
+                                        .Include(e => e.Ancestry)
+                                        .ThenInclude(e => e.AncestryBoosts)
+                                        .ThenInclude(e => e.Boost)
                                         .Include(e => e.Background)
+                                        .ThenInclude(e => e.BackgroundBoosts)
+                                        .ThenInclude(e => e.Boost)
                                         .Include(e => e.CharacterClass)
                                         .ThenInclude(e => e.ClassFeats)
                                         .FirstOrDefault(e => e.CharacterId == id);
-      Ancestry currentAncestry = currentCharacter.Ancestry;
-      Background currentBackground = currentCharacter.Background;
-      CharacterClass currentClass = currentCharacter.CharacterClass;
-      List<Boost> ancestryBoosts = currentAncestry.AncestryBoosts.;
+      // Ancestry currentAncestry = currentCharacter.Ancestry;
+      // Background currentBackground = currentCharacter.Background;
+      // CharacterClass currentClass = currentCharacter.CharacterClass;
+      // List<AncestryBoost> ancestryBoosts = currentAncestry.AncestryBoosts;
       // List<Boost> backgroundBoosts = _db.Boosts
       //                                   .Where(e =>e.BackgroundBoosts == currentBackground.BackgroundBoosts)
       //                                   .ToList();
