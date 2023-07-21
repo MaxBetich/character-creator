@@ -5,3 +5,23 @@
 @model CharacterCreator.Models.Character
 @using CharacterCreator.Models
 
+<h1>Starting Choices</h1>
+
+<h2>@Model.Ancestry.AncestryName has the following ability boosts:</h2>
+<ul>
+  @foreach (AncestryBoost join in Model.Ancestry.AncestryBoosts)
+  {
+    <li>@join.Boost.AbilityBoost</li>
+  }
+</ul>
+
+@if (Model.Ancestry.AncestryFlaws.Count != 0)
+{
+  <h2>@Model.Ancestry.AncestryName has the following ability flaw(s):</h2>
+  <ul>
+    @foreach (AncestryFlaw join in Model.Ancestry.AncestryFlaws)
+    {
+      <li>@join.Flaw.AbilityFlaw</li>
+    }
+  </ul>
+}
