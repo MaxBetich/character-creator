@@ -14,6 +14,8 @@
 This application is intended to function as a tool to help create and track the progression of characters for roleplaying games similar to Dungeons and Dragons or Pathfinder. It will, once completed, allow users to log in and see a list of their previously created characters, give them the ability to create new characters, and selected a character and advance them by increasing in level and gaining new powers and abilities.
 The application currently has stored seed data for creating pre-generated ancestries, backgrounds, and classes. Future versions of the application will potentially utilize an external API to store this information, as well as tables of items, spells, and other information.
 
+Further exploration of the project suggests that setting up the pages using React tools would likely simplify the amount of information being kept track of between pages, but I believe it remains workable in a C#/.NET MVC setup.
+
 ## Setup/Installation Requirements
 * Clone project from this [GitHub repository](https://github.com/MaxBetich/character-creator.git) to your desktop.
 * Navigate to the CharacterCreator directory inside this repo in your terminal and create a new file called `appsettings.json`.
