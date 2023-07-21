@@ -9,5 +9,15 @@
 
 @using (Html.BeginForm())
 {
-  
+  <p>Name:</p>
+  @Html.TextBoxFor(model => model.CharacterName)
+  <p>Ancestry:</p>
+  @Html.DropDownList("AncestryId")
+  <p>Background:</p>
+  @Html.DropDownList("BackgroundId")
+  <p>Class:</p>
+  @Html.DropDownList("CharacterClassId")
+
+  <input type="submit" value="Proceed" class="btn btn-default" />
 }
+<p>@Html.ActionLink("Return to Character List", "Index")</p>

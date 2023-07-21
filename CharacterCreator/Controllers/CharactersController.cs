@@ -42,9 +42,9 @@ namespace CharacterCreator.Controllers
       ViewBag.Ancestries = ancestries;
       ViewBag.CharacterClasses = characterClasses;
       ViewBag.Backgrounds = backgrounds;
-      ViewBag.AncestryList = new SelectList(_db.Ancestries, "AncestryId", "AncestryName");
-      ViewBag.CharacterClassList = new SelectList(_db.CharacterClasses, "CharacterClassId", "CharacterClassName");
-      ViewBag.BackgroundList = new SelectList(_db.Backgrounds, "BackgroundId", "BackgroundName");
+      ViewBag.AncestryId = new SelectList(_db.Ancestries, "AncestryId", "AncestryName");
+      ViewBag.CharacterClassId = new SelectList(_db.CharacterClasses, "CharacterClassId", "CharacterClassName");
+      ViewBag.BackgroundId = new SelectList(_db.Backgrounds, "BackgroundId", "BackgroundName");
       return View();
     }
 
@@ -59,9 +59,9 @@ namespace CharacterCreator.Controllers
         ViewBag.Ancestries = ancestries;
         ViewBag.CharacterClasses = characterClasses;
         ViewBag.Backgrounds = backgrounds;
-        ViewBag.AncestryList = new SelectList(_db.Ancestries, "AncestryId", "AncestryName");
-        ViewBag.CharacterClassList = new SelectList(_db.CharacterClasses, "CharacterClassId", "CharacterClassName");
-        ViewBag.BackgroundList = new SelectList(_db.Backgrounds, "BackgroundId", "BackgroundName");
+        ViewBag.AncestryId = new SelectList(_db.Ancestries, "AncestryId", "AncestryName");
+        ViewBag.CharacterClassId = new SelectList(_db.CharacterClasses, "CharacterClassId", "CharacterClassName");
+        ViewBag.BackgroundId = new SelectList(_db.Backgrounds, "BackgroundId", "BackgroundName");
         return View(character);
       }
       else
