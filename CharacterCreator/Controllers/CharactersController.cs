@@ -72,11 +72,11 @@ namespace CharacterCreator.Controllers
         character.User = currentUser;
         _db.Characters.Add(character);
         _db.SaveChanges();
-        return RedirectToAction("Choices", new {id = character.CharacterId});
+        return RedirectToAction("BoostSelect", new {id = character.CharacterId});
       }
     }
 
-    public ActionResult Choices(int id)
+    public ActionResult BoostSelect(int id)
     {
       Character currentCharacter = _db.Characters
                                         .Include(e => e.Ancestry)
@@ -124,7 +124,7 @@ namespace CharacterCreator.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Choices(Character character)
+    public async Task<ActionResult> BoostSelect(Character character)
     {
       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
@@ -146,6 +146,7 @@ namespace CharacterCreator.Controllers
       int conHp = (int)Math.Floor(conModifier);
       character.Hitpoints = character.Ancestry.StartingHitpoints + character.CharacterClass.ClassHitpoints + conHp;
       _db.Characters.Update(character);
+      _db.CharacterSkillFeats.Add(new CharacterSkillFeat() {CharacterId = character.CharacterId, SkillFeatId = character.Background.SkillFeatId});
       _db.SaveChanges();
       return RedirectToAction("FeatSelection1", new {id = id});
     }
@@ -186,6 +187,30 @@ namespace CharacterCreator.Controllers
         _db.SaveChanges();
       }
       return RedirectToAction("FeatSelection2", new {id = character.CharacterId});
+    }
+
+    public ActionResult FeatSelection2(int id)
+    {
+      Character currentCharacter = _db.Characters
+                                        .Include(e => e.Ancestry)
+                                        .ThenInclude(e => e.AncestryFeats)
+                                        .Include(e => e.Ancestry)
+                                        .ThenInclude(e => e.AncestryBoosts)
+                                        .ThenInclude(e => e.Boost)
+                                        .Include(e => e.Ancestry)
+                                        .ThenInclude(e => e.AncestryFlaws)
+                                        .ThenInclude(e => e.Flaw)
+                                        .Include(e => e.Background)
+                                        .ThenInclude(e => e.BackgroundBoosts)
+                                        .ThenInclude(e => e.Boost)
+                                        .Include(e => e.CharacterClass)
+                                        .ThenInclude(e => e.ClassFeats)
+                                        .FirstOrDefault(e => e.CharacterId == id);
+      Ancestry currentAncestry = currentCharacter.Ancestry;
+      Background currentBackground = currentCharacter.Background;
+      CharacterClass currentClass = currentCharacter.CharacterClass;
+      ViewBag.AncestryFeatId = new SelectList(_db.AncestryFeats.Where(e => e.AncestryId == currentAncestry.AncestryId && e.RequiredLevel <= currentCharacter.Level));
+      return View(currentCharacter);
     }
   }
 }
