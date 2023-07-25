@@ -107,13 +107,13 @@ namespace CharacterCreator.Controllers
       List<Boost> backgroundBoostList = new List<Boost> {};
       foreach (BackgroundBoost join in backgroundBoosts)
       {
-        if (join.Boost.AbilityBoost != "free")
+        if (join.Boost.AbilityBoost != "Free")
         {
           backgroundBoostList.Add(join.Boost);
         }
       }
       ViewBag.BackgroundBoosts = new SelectList(backgroundBoostList, "AbilityBoost", "AbilityBoost") ;
-      ViewBag.Boost2 = new SelectList(_db.Boosts.Where(e => e.AbilityBoost != "free"), "AbilityBoost", "AbilityBoost");
+      ViewBag.Boost2 = new SelectList(_db.Boosts.Where(e => e.AbilityBoost != "Free"), "AbilityBoost", "AbilityBoost");
       // List<Flaw> ancestryFlaws = _db.Flaws
       //                               .Where(e => e.AncestryFlaws == currentAncestry.AncestryFlaws)
       //                               .ToList();
@@ -132,29 +132,30 @@ namespace CharacterCreator.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> BoostSelect(Character character, string boost1, string boost2, string boost3, string boost4, string boost5, string boost6, string boost7, string boost8, string boost9)
+    public async Task<ActionResult> BoostSelect(Character character, string flaw1, string boost1, string boost2, string boost3, string boost4, string boost5, string boost6, string boost7, string boost8, string boost9)
     {
       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       character.User = currentUser;
       int id = character.CharacterId;
+      CharacterClass currentClass = character.CharacterClass;
       character.Level = character.Level + 1;
-      character.PerceptionProficiency = character.CharacterClass.PerceptionProficiency;
-      character.FortitudeSaveProficiency = character.CharacterClass.FortitudeSaveProficiency;
-      character.WillSaveProficiency = character.CharacterClass.WillSaveProficiency;
-      character.UnarmedProficiency = character.CharacterClass.UnarmedProficiency;
-      character.SimpleProficiency = character.CharacterClass.SimpleProficiency;
-      character.MartialProficiency = character.CharacterClass.MartialProficiency;
-      character.AdvancedProficiency = character.CharacterClass.AdvancedProficiency;
-      character.UnarmoredProficiency = character.CharacterClass.UnarmoredProficiency;
-      character.LightArmorProficiency = character.CharacterClass.LightArmorProficiency;
-      character.MediumArmorProficiency = character.CharacterClass.MediumArmorProficiency;
-      character.HeavyArmorProficiency = character.CharacterClass.HeavyArmorProficiency;
-      decimal conModifier = (character.Constitution - 10)/2;
-      int conHp = (int)Math.Floor(conModifier);
-      character.Hitpoints = character.Ancestry.StartingHitpoints + character.CharacterClass.ClassHitpoints + conHp;
-      _db.Characters.Update(character);
-      _db.CharacterSkillFeats.Add(new CharacterSkillFeat() {CharacterId = character.CharacterId, SkillFeatId = character.Background.SkillFeatId});
+      // character.PerceptionProficiency = currentClass.PerceptionProficiency;
+      // character.FortitudeSaveProficiency = currentClass.FortitudeSaveProficiency;
+      // character.WillSaveProficiency = currentClass.WillSaveProficiency;
+      // character.UnarmedProficiency = currentClass.UnarmedProficiency;
+      // character.SimpleProficiency = currentClass.SimpleProficiency;
+      // character.MartialProficiency = currentClass.MartialProficiency;
+      // character.AdvancedProficiency = currentClass.AdvancedProficiency;
+      // character.UnarmoredProficiency = currentClass.UnarmoredProficiency;
+      // character.LightArmorProficiency = currentClass.LightArmorProficiency;
+      // character.MediumArmorProficiency = currentClass.MediumArmorProficiency;
+      // character.HeavyArmorProficiency = currentClass.HeavyArmorProficiency;
+      // decimal conModifier = (character.Constitution - 10)/2;
+      // int conHp = (int)Math.Floor(conModifier);
+      // character.Hitpoints = character.Ancestry.StartingHitpoints + currentClass.ClassHitpoints + conHp;
+      // _db.Characters.Update(character);
+      // _db.CharacterSkillFeats.Add(new CharacterSkillFeat() {CharacterId = character.CharacterId, SkillFeatId = character.Background.SkillFeatId});
       _db.SaveChanges();
       return RedirectToAction("FeatSelection1", new {id = id});
     }

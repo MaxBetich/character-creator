@@ -32,23 +32,23 @@ namespace CharacterCreator.Models
       base.OnModelCreating(builder);  
       builder.Entity<Boost>()
         .HasData(
-          new Boost {BoostId = 1, AbilityBoost = "strength"},
-          new Boost {BoostId = 2, AbilityBoost = "dexterity"},
-          new Boost {BoostId = 3, AbilityBoost = "constitution"},
-          new Boost {BoostId = 4, AbilityBoost = "intelligence"},
-          new Boost {BoostId = 5, AbilityBoost = "wisdom"},
-          new Boost {BoostId = 6, AbilityBoost = "charisma"},
-          new Boost {BoostId = 7, AbilityBoost = "free"}
+          new Boost {BoostId = 1, AbilityBoost = "Strength"},
+          new Boost {BoostId = 2, AbilityBoost = "Dexterity"},
+          new Boost {BoostId = 3, AbilityBoost = "Constitution"},
+          new Boost {BoostId = 4, AbilityBoost = "Intelligence"},
+          new Boost {BoostId = 5, AbilityBoost = "Wisdom"},
+          new Boost {BoostId = 6, AbilityBoost = "Charisma"},
+          new Boost {BoostId = 7, AbilityBoost = "Free"}
         );
       builder.Entity<Flaw>()
         .HasData(
-          new Flaw {FlawId = 1, AbilityFlaw = "strength"},
-          new Flaw {FlawId = 2, AbilityFlaw = "dexterity"},
-          new Flaw {FlawId = 3, AbilityFlaw = "constitution"},
-          new Flaw {FlawId = 4, AbilityFlaw = "intelligence"},
-          new Flaw {FlawId = 5, AbilityFlaw = "wisdom"},
-          new Flaw {FlawId = 6, AbilityFlaw = "charisma"},
-          new Flaw {FlawId = 7, AbilityFlaw = "free"}
+          new Flaw {FlawId = 1, AbilityFlaw = "Strength"},
+          new Flaw {FlawId = 2, AbilityFlaw = "Dexterity"},
+          new Flaw {FlawId = 3, AbilityFlaw = "Constitution"},
+          new Flaw {FlawId = 4, AbilityFlaw = "Intelligence"},
+          new Flaw {FlawId = 5, AbilityFlaw = "Wisdom"},
+          new Flaw {FlawId = 6, AbilityFlaw = "Charisma"},
+          new Flaw {FlawId = 7, AbilityFlaw = "Free"}
         );
       builder.Entity<Ancestry>()
         .HasData(

@@ -37,18 +37,25 @@
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.CharacterId)
+  @if (Model.Ancestry.AncestryFlaws.Count != 0)
+  {
+    @foreach (AncestryFlaw join in Model.Ancestry.AncestryFlaws)
+    {
+      @Html.Hidden(join.Flaw.AbilityFlaw, "AbilityFlaw")
+    }
+  }
   <h2>Assign Boosts</h2>
   <p>Ancestry Boosts:</p>
   <ul>
   @foreach (AncestryBoost join in Model.Ancestry.AncestryBoosts)
   {
-    if (join.Boost.AbilityBoost == "free")
+    if (join.Boost.AbilityBoost == "Free")
     {
       <li>@Html.DropDownList("Boost2")</li>
     }
     else
     {
-      @Html.Hidden(join.Boost.AbilityBoost)
+      @Html.Hidden(join.Boost.AbilityBoost, "AbilityBoost")
       <li>@join.Boost.AbilityBoost</li>
     }
   }
@@ -65,4 +72,6 @@
     <li>@Html.DropDownList("Boost2")</li>
     <li>@Html.DropDownList("Boost2")</li>
   </ul>
+
+  <input type="submit" value="Proceed" class="btn btn-default" />
 }

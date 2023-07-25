@@ -473,37 +473,37 @@ namespace CharacterCreator.Migrations
                         new
                         {
                             BoostId = 1,
-                            AbilityBoost = "strength"
+                            AbilityBoost = "Strength"
                         },
                         new
                         {
                             BoostId = 2,
-                            AbilityBoost = "dexterity"
+                            AbilityBoost = "Dexterity"
                         },
                         new
                         {
                             BoostId = 3,
-                            AbilityBoost = "constitution"
+                            AbilityBoost = "Constitution"
                         },
                         new
                         {
                             BoostId = 4,
-                            AbilityBoost = "intelligence"
+                            AbilityBoost = "Intelligence"
                         },
                         new
                         {
                             BoostId = 5,
-                            AbilityBoost = "wisdom"
+                            AbilityBoost = "Wisdom"
                         },
                         new
                         {
                             BoostId = 6,
-                            AbilityBoost = "charisma"
+                            AbilityBoost = "Charisma"
                         },
                         new
                         {
                             BoostId = 7,
-                            AbilityBoost = "free"
+                            AbilityBoost = "Free"
                         });
                 });
 
@@ -921,37 +921,37 @@ namespace CharacterCreator.Migrations
                         new
                         {
                             FlawId = 1,
-                            AbilityFlaw = "strength"
+                            AbilityFlaw = "Strength"
                         },
                         new
                         {
                             FlawId = 2,
-                            AbilityFlaw = "dexterity"
+                            AbilityFlaw = "Dexterity"
                         },
                         new
                         {
                             FlawId = 3,
-                            AbilityFlaw = "constitution"
+                            AbilityFlaw = "Constitution"
                         },
                         new
                         {
                             FlawId = 4,
-                            AbilityFlaw = "intelligence"
+                            AbilityFlaw = "Intelligence"
                         },
                         new
                         {
                             FlawId = 5,
-                            AbilityFlaw = "wisdom"
+                            AbilityFlaw = "Wisdom"
                         },
                         new
                         {
                             FlawId = 6,
-                            AbilityFlaw = "charisma"
+                            AbilityFlaw = "Charisma"
                         },
                         new
                         {
                             FlawId = 7,
-                            AbilityFlaw = "free"
+                            AbilityFlaw = "Free"
                         });
                 });
 
