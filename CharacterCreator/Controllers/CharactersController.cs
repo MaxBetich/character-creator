@@ -104,8 +104,16 @@ namespace CharacterCreator.Controllers
                                         .Include(e => e.Boost)
                                         // .ThenInclude(e => e.AbilityBoost)
                                         .ToList();
-      ViewBag.BackgroundBoosts = backgroundBoosts;
-      ViewBag.ClassFeatId = new SelectList(_db.ClassFeats.Where(e => e.CharacterClassId == currentClass.CharacterClassId), "ClassFeatId", "ClassFeatName");
+      List<Boost> backgroundBoostList = new List<Boost> {};
+      foreach (BackgroundBoost join in backgroundBoosts)
+      {
+        if (join.Boost.AbilityBoost != "free")
+        {
+          backgroundBoostList.Add(join.Boost);
+        }
+      }
+      ViewBag.BackgroundBoosts = new SelectList(backgroundBoostList, "BoostId", "AbilityBoost") ;
+      ViewBag.Boost2 = new SelectList(_db.Boosts, "BoostId", "AbilityBoost");
       // List<Flaw> ancestryFlaws = _db.Flaws
       //                               .Where(e => e.AncestryFlaws == currentAncestry.AncestryFlaws)
       //                               .ToList();

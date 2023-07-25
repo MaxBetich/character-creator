@@ -33,11 +33,28 @@
     <li>@join.Boost.AbilityBoost</li>
   }
 </ul>
-@foreach (BackgroundBoost join in ViewBag.BackgroundBoosts)
-{
-  <p>@join.Boost.AbilityBoost</p>
-}
+@* @Html.DropDownList("Boost2") *@
 @using (Html.BeginForm())
 {
-  
+  @Html.Hidden("Character", Model)
+  <h2>Assign Boosts</h2>
+  <p>Ancestry Boosts:</p>
+  <ul>
+  @foreach (AncestryBoost join in Model.Ancestry.AncestryBoosts)
+  {
+    if (join.Boost.AbilityBoost == "free")
+    {
+      <li>@Html.DropDownList("Boost2")</li>
+    }
+    else
+    {
+      <li>@join.Boost.AbilityBoost</li>
+    }
+  }
+  </ul>
+  <p>Background Boosts:</p>
+  <ul>
+    <li>@Html.DropDownList("BackgroundBoosts")</li>
+    <li>@Html.DropDownList("Boost2")</li>
+  </ul>
 }
