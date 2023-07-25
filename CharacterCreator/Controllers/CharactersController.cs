@@ -50,7 +50,7 @@ namespace CharacterCreator.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Character character, int AncestryId, int CharacterClassId, int BackgroundId)
+    public async Task<ActionResult> Create(Character character)
     {
       if (!ModelState.IsValid)
       {
@@ -70,6 +70,22 @@ namespace CharacterCreator.Controllers
         string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
         character.User = currentUser;
+        CharacterClass currentClass = character.CharacterClass;
+        character.Level = character.Level + 1;
+        // character.PerceptionProficiency = character.CharacterClass.PerceptionProficiency;
+        // character.FortitudeSaveProficiency = currentClass.FortitudeSaveProficiency;
+        // character.WillSaveProficiency = currentClass.WillSaveProficiency;
+        // character.UnarmedProficiency = currentClass.UnarmedProficiency;
+        // character.SimpleProficiency = currentClass.SimpleProficiency;
+        // character.MartialProficiency = currentClass.MartialProficiency;
+        // character.AdvancedProficiency = currentClass.AdvancedProficiency;
+        // character.UnarmoredProficiency = currentClass.UnarmoredProficiency;
+        // character.LightArmorProficiency = currentClass.LightArmorProficiency;
+        // character.MediumArmorProficiency = currentClass.MediumArmorProficiency;
+        // character.HeavyArmorProficiency = currentClass.HeavyArmorProficiency;
+        decimal conModifier = (character.Constitution - 10)/2;
+        int conHp = (int)Math.Floor(conModifier);
+        // character.Hitpoints = character.Ancestry.StartingHitpoints + currentClass.ClassHitpoints + conHp;
         _db.Characters.Add(character);
         _db.SaveChanges();
         return RedirectToAction("BoostSelect", new {id = character.CharacterId});
@@ -134,12 +150,13 @@ namespace CharacterCreator.Controllers
     [HttpPost]
     public async Task<ActionResult> BoostSelect(Character character, string flaw1, string boost1, string boost2, string boost3, string boost4, string boost5, string boost6, string boost7, string boost8, string boost9)
     {
+      
       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       character.User = currentUser;
       int id = character.CharacterId;
-      CharacterClass currentClass = character.CharacterClass;
-      character.Level = character.Level + 1;
+      // CharacterClass currentClass = character.CharacterClass;
+      // character.Level = character.Level + 1;
       // character.PerceptionProficiency = currentClass.PerceptionProficiency;
       // character.FortitudeSaveProficiency = currentClass.FortitudeSaveProficiency;
       // character.WillSaveProficiency = currentClass.WillSaveProficiency;
@@ -155,7 +172,7 @@ namespace CharacterCreator.Controllers
       // int conHp = (int)Math.Floor(conModifier);
       // character.Hitpoints = character.Ancestry.StartingHitpoints + currentClass.ClassHitpoints + conHp;
       // _db.Characters.Update(character);
-      // _db.CharacterSkillFeats.Add(new CharacterSkillFeat() {CharacterId = character.CharacterId, SkillFeatId = character.Background.SkillFeatId});
+      _db.CharacterSkillFeats.Add(new CharacterSkillFeat() {CharacterId = character.CharacterId, SkillFeatId = character.Background.SkillFeatId});
       _db.SaveChanges();
       return RedirectToAction("FeatSelection1", new {id = id});
     }
