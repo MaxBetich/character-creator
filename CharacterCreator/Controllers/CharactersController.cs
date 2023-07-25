@@ -71,7 +71,7 @@ namespace CharacterCreator.Controllers
         ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
         character.User = currentUser;
         CharacterClass currentClass = character.CharacterClass;
-        character.Level = character.Level + 1;
+        // character.Level = character.Level + 1;
         // character.PerceptionProficiency = character.CharacterClass.PerceptionProficiency;
         // character.FortitudeSaveProficiency = currentClass.FortitudeSaveProficiency;
         // character.WillSaveProficiency = currentClass.WillSaveProficiency;

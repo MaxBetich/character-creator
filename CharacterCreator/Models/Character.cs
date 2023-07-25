@@ -39,5 +39,28 @@ namespace CharacterCreator.Models
     public List<CharacterSkillFeat> CharacterSkillFeats {get;set;}
     public List<CharacterAncestryFeat> CharacterAncestryFeats {get;set;}
     public ApplicationUser User {get;set;}
+
+    private Character()
+    {
+      Level = 1;
+      Strength = 10;
+      Dexterity = 10;
+      Constitution = 10;
+      Wisdom = 10;
+      Intelligence = 10;
+      Charisma = 10;
+      PerceptionProficiency = "untrained";
+      FortitudeSaveProficiency = "untrained";
+      ReflexSaveProficiency = "untrained";
+      WillSaveProficiency = "untrained";
+      UnarmedProficiency = "untrained";
+      SimpleProficiency = "untrained";
+      MartialProficiency = "untrained";
+      AdvancedProficiency = "untrained";
+      UnarmoredProficiency = "untrained";
+      LightArmorProficiency = "untrained";
+      MediumArmorProficiency = "untrained";
+      HeavyArmorProficiency = "untrained";
+    }
   }
 }
