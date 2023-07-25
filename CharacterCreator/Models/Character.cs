@@ -5,6 +5,12 @@ namespace CharacterCreator.Models
 {
   public class Character
   {
+    // private int _strength;
+    // private int _dexterity;
+    // private int _constitution;
+    // private int _intelligence;
+    // private int _wisdom;
+    // private int _charisma;
     public int CharacterId {get;set;}
     public string CharacterName {get;set;}
     public int Level{get;set;}
@@ -40,7 +46,7 @@ namespace CharacterCreator.Models
     public List<CharacterAncestryFeat> CharacterAncestryFeats {get;set;}
     public ApplicationUser User {get;set;}
 
-    private Character()
+    public Character()
     {
       Level = 1;
       Strength = 10;
@@ -49,6 +55,7 @@ namespace CharacterCreator.Models
       Wisdom = 10;
       Intelligence = 10;
       Charisma = 10;
+      Hitpoints = 0;
       PerceptionProficiency = "untrained";
       FortitudeSaveProficiency = "untrained";
       ReflexSaveProficiency = "untrained";

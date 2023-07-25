@@ -83,8 +83,8 @@ namespace CharacterCreator.Controllers
         // character.LightArmorProficiency = currentClass.LightArmorProficiency;
         // character.MediumArmorProficiency = currentClass.MediumArmorProficiency;
         // character.HeavyArmorProficiency = currentClass.HeavyArmorProficiency;
-        decimal conModifier = (character.Constitution - 10)/2;
-        int conHp = (int)Math.Floor(conModifier);
+        // decimal conModifier = (character.Constitution - 10)/2;
+        // int conHp = (int)Math.Floor(conModifier);
         // character.Hitpoints = character.Ancestry.StartingHitpoints + currentClass.ClassHitpoints + conHp;
         _db.Characters.Add(character);
         _db.SaveChanges();
@@ -172,7 +172,7 @@ namespace CharacterCreator.Controllers
       // int conHp = (int)Math.Floor(conModifier);
       // character.Hitpoints = character.Ancestry.StartingHitpoints + currentClass.ClassHitpoints + conHp;
       // _db.Characters.Update(character);
-      _db.CharacterSkillFeats.Add(new CharacterSkillFeat() {CharacterId = character.CharacterId, SkillFeatId = character.Background.SkillFeatId});
+      // _db.CharacterSkillFeats.Add(new CharacterSkillFeat() {CharacterId = character.CharacterId, SkillFeatId = character.Background.SkillFeatId});
       _db.SaveChanges();
       return RedirectToAction("FeatSelection1", new {id = id});
     }
