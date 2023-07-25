@@ -12,7 +12,7 @@
 
 ## Description
 This application is intended to function as a tool to help create and track the progression of characters for roleplaying games similar to Dungeons and Dragons or Pathfinder. It will, once completed, allow users to log in and see a list of their previously created characters, give them the ability to create new characters, and selected a character and advance them by increasing in level and gaining new powers and abilities.
-The application currently has stored seed data for creating pre-generated ancestries, backgrounds, and classes. Future versions of the application will potentially utilize an external API to store this information, as well as tables of items, spells, and other information.
+The application currently has stored seed data for creating pre-generated ancestries, backgrounds, and classes. Future versions of the application will potentially utilize an external API to store this information, as well as tables of items, spells, and other information. Application currently has initial support for creating a character's name, ancestry, background, and class, and aims to support the ability to generate starting ability scores based on boosts available from class, background, and ancestry, as well as provide a list of starting feats based on background and class. Basic functionality for leveling a character up and improving their abilities is intended.
 
 Further exploration of the project suggests that setting up the pages using React tools would likely simplify the amount of information being kept track of between pages, but I believe it remains workable in a C#/.NET MVC setup.
 
