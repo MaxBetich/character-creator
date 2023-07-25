@@ -112,8 +112,8 @@ namespace CharacterCreator.Controllers
           backgroundBoostList.Add(join.Boost);
         }
       }
-      ViewBag.BackgroundBoosts = new SelectList(backgroundBoostList, "BoostId", "AbilityBoost") ;
-      ViewBag.Boost2 = new SelectList(_db.Boosts, "BoostId", "AbilityBoost");
+      ViewBag.BackgroundBoosts = new SelectList(backgroundBoostList, "AbilityBoost", "AbilityBoost") ;
+      ViewBag.Boost2 = new SelectList(_db.Boosts.Where(e => e.AbilityBoost != "free"), "AbilityBoost", "AbilityBoost");
       // List<Flaw> ancestryFlaws = _db.Flaws
       //                               .Where(e => e.AncestryFlaws == currentAncestry.AncestryFlaws)
       //                               .ToList();
@@ -132,7 +132,7 @@ namespace CharacterCreator.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> BoostSelect(Character character)
+    public async Task<ActionResult> BoostSelect(Character character, string boost1, string boost2, string boost3, string boost4, string boost5, string boost6, string boost7, string boost8, string boost9)
     {
       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);

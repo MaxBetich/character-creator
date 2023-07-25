@@ -36,7 +36,7 @@
 @* @Html.DropDownList("Boost2") *@
 @using (Html.BeginForm())
 {
-  @Html.Hidden("Character", Model)
+  @Html.HiddenFor(model => model.CharacterId)
   <h2>Assign Boosts</h2>
   <p>Ancestry Boosts:</p>
   <ul>
@@ -48,6 +48,7 @@
     }
     else
     {
+      @Html.Hidden(join.Boost.AbilityBoost)
       <li>@join.Boost.AbilityBoost</li>
     }
   }
@@ -55,6 +56,13 @@
   <p>Background Boosts:</p>
   <ul>
     <li>@Html.DropDownList("BackgroundBoosts")</li>
+    <li>@Html.DropDownList("Boost2")</li>
+  </ul>
+  <p>Free Boosts:</p>
+  <ul>
+    <li>@Html.DropDownList("Boost2")</li>
+    <li>@Html.DropDownList("Boost2")</li>
+    <li>@Html.DropDownList("Boost2")</li>
     <li>@Html.DropDownList("Boost2")</li>
   </ul>
 }
