@@ -212,5 +212,19 @@ namespace CharacterCreator.Controllers
       ViewBag.AncestryFeatId = new SelectList(_db.AncestryFeats.Where(e => e.AncestryId == currentAncestry.AncestryId && e.RequiredLevel <= currentCharacter.Level));
       return View(currentCharacter);
     }
+
+    [HttpPost]
+    public ActionResult FeatSelection2(Character character, int featId)
+    {
+      #nullable enable
+      CharacterSkillFeat? joinEntity = _db.CharacterSkillFeats.FirstOrDefault(e => e.SkillFeatId == featId && e.CharacterId == character.CharacterId);
+      #nullable disable
+      if (joinEntity == null && featId != 0)
+      {
+        _db.CharacterSkillFeats.Add(new CharacterSkillFeat() {SkillFeatId = featId, CharacterId = character.CharacterId});
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new {id = character.CharacterId});
+    }
   }
 }
