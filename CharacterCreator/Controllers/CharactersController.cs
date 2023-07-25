@@ -105,6 +105,7 @@ namespace CharacterCreator.Controllers
                                         // .ThenInclude(e => e.AbilityBoost)
                                         .ToList();
       ViewBag.BackgroundBoosts = backgroundBoosts;
+      ViewBag.ClassFeatId = new SelectList(_db.ClassFeats.Where(e => e.CharacterClassId == currentClass.CharacterClassId), "ClassFeatId", "ClassFeatName");
       // List<Flaw> ancestryFlaws = _db.Flaws
       //                               .Where(e => e.AncestryFlaws == currentAncestry.AncestryFlaws)
       //                               .ToList();
@@ -146,7 +147,30 @@ namespace CharacterCreator.Controllers
       character.Hitpoints = character.Ancestry.StartingHitpoints + character.CharacterClass.ClassHitpoints + conHp;
       _db.Characters.Update(character);
       _db.SaveChanges();
-      return RedirectToAction("Details", new {id = id});
+      return RedirectToAction("FeatSelection1", new {id = id});
+    }
+
+    public ActionResult FeatSelection1(int id)
+    {
+      Character currentCharacter = _db.Characters
+                                        .Include(e => e.Ancestry)
+                                        .ThenInclude(e => e.AncestryFeats)
+                                        .Include(e => e.Ancestry)
+                                        .ThenInclude(e => e.AncestryBoosts)
+                                        .ThenInclude(e => e.Boost)
+                                        .Include(e => e.Ancestry)
+                                        .ThenInclude(e => e.AncestryFlaws)
+                                        .ThenInclude(e => e.Flaw)
+                                        .Include(e => e.Background)
+                                        .ThenInclude(e => e.BackgroundBoosts)
+                                        .ThenInclude(e => e.Boost)
+                                        .Include(e => e.CharacterClass)
+                                        .ThenInclude(e => e.ClassFeats)
+                                        .FirstOrDefault(e => e.CharacterId == id);
+      Ancestry currentAncestry = currentCharacter.Ancestry;
+      Background currentBackground = currentCharacter.Background;
+      CharacterClass currentClass = currentCharacter.CharacterClass;
+      ViewBag.ClassFeatId = new SelectList(_db.ClassFeats.Where(e => e.CharacterClassId == currentClass.CharacterClassId), "ClassFeatId", "ClassFeatName");
     }
   }
 }
