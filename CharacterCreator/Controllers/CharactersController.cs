@@ -171,6 +171,21 @@ namespace CharacterCreator.Controllers
       Background currentBackground = currentCharacter.Background;
       CharacterClass currentClass = currentCharacter.CharacterClass;
       ViewBag.ClassFeatId = new SelectList(_db.ClassFeats.Where(e => e.CharacterClassId == currentClass.CharacterClassId), "ClassFeatId", "ClassFeatName");
+      return View(currentCharacter);
+    }
+
+    [HttpPost]
+    public ActionResult FeatSelection1(Character character, int featId)
+    {
+      #nullable enable
+      CharacterClassFeat? joinEntity = _db.CharacterClassFeats.FirstOrDefault(e => (e.ClassFeatId == featId && e.CharacterId == character.CharacterId));
+      #nullable disable
+      if (joinEntity == null && featId != 0)
+      {
+        _db.CharacterClassFeats.Add(new CharacterClassFeat() {ClassFeatId = featId, CharacterId = character.CharacterId});
+        _db.SaveChanges();
+      }
+      return RedirectToAction("FeatSelection2", new {id = character.CharacterId});
     }
   }
 }
