@@ -11,6 +11,8 @@ namespace CharacterCreator.Models
     public DbSet<Flaw> Flaws {get;set;}
     public DbSet<Character> Characters { get; set; }
     public DbSet<CharacterClass> CharacterClasses { get; set; }
+    public DbSet<CharacterBoost> CharacterBoosts {get;set;}
+    public DbSet<CharacterFlaw> CharacterFlaws {get;set;}
     public DbSet<Ancestry> Ancestries { get; set; }
     public DbSet<Background> Backgrounds { get; set; }
     public DbSet<BackgroundSkill> BackgroundSkills {get;set;}

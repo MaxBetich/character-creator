@@ -7,5 +7,6 @@ namespace CharacterCreator.Models
     public int FlawId {get;set;}
     public string AbilityFlaw {get;set;}
     public List<AncestryFlaw> AncestryFlaws {get;set;}
+    public List<CharacterFlaw> CharacterFlaws {get;set;}
   }
 }

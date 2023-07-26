@@ -149,14 +149,72 @@ namespace CharacterCreator.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> BoostSelect(Character character, string flaw1, string boost1, string boost2, string boost3, string boost4, string boost5, string boost6, string boost7, string boost8, string boost9)
+    public async Task<ActionResult> BoostSelect(Character character, int flaw1, int boost1, int boost2, int boost3, int boost4, int boost5, int boost6, int boost7, int boost8, int boost9)
     {
-      
       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       character.User = currentUser;
       int id = character.CharacterId;
-      character.HitpointSet();
+      #nullable enable
+      CharacterFlaw? characterFlaw = _db.CharacterFlaws.FirstOrDefault(e => (e.FlawId == flaw1 && e.CharacterId == character.CharacterId));
+      CharacterBoost? characterBoost1 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost1 && e.CharacterId == character.CharacterId));
+      CharacterBoost? characterBoost2 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost2 && e.CharacterId == character.CharacterId));
+      CharacterBoost? characterBoost3 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost3 && e.CharacterId == character.CharacterId));
+      CharacterBoost? characterBoost4 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost4 && e.CharacterId == character.CharacterId));
+      CharacterBoost? characterBoost5 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost5 && e.CharacterId == character.CharacterId));
+      CharacterBoost? characterBoost6 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost6 && e.CharacterId == character.CharacterId));
+      CharacterBoost? characterBoost7 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost7 && e.CharacterId == character.CharacterId));
+      CharacterBoost? characterBoost8 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost8 && e.CharacterId == character.CharacterId));
+      CharacterBoost? characterBoost9 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost9 && e.CharacterId == character.CharacterId));
+      #nullable disable
+      if (flaw1 != 0)
+      {
+        _db.CharacterFlaws.Add(new CharacterFlaw() {CharacterId = character.CharacterId, FlawId = flaw1});
+      }
+      if (boost1 != 0)
+      {
+        _db.CharacterBoosts.Add(new CharacterBoost() {CharacterId = character.CharacterId, BoostId = boost1});
+      }
+      if (boost2 != 0)
+      {
+        _db.CharacterBoosts.Add(new CharacterBoost() {CharacterId = character.CharacterId, BoostId = boost2});
+      }
+      if (boost3 != 0)
+      {
+        _db.CharacterBoosts.Add(new CharacterBoost() {CharacterId = character.CharacterId, BoostId = boost3});
+      }
+      if (boost4 != 0)
+      {
+        _db.CharacterBoosts.Add(new CharacterBoost() {CharacterId = character.CharacterId, BoostId = boost4});
+      }
+      if (boost5 != 0)
+      {
+        _db.CharacterBoosts.Add(new CharacterBoost() {CharacterId = character.CharacterId, BoostId = boost5});
+      }
+      if (boost6 != 0)
+      {
+        _db.CharacterBoosts.Add(new CharacterBoost() {CharacterId = character.CharacterId, BoostId = boost6});
+      }
+      if (boost7 != 0)
+      {
+         _db.CharacterBoosts.Add(new CharacterBoost() {CharacterId = character.CharacterId, BoostId = boost7});
+      }
+      if (boost8 != 0)
+      {
+         _db.CharacterBoosts.Add(new CharacterBoost() {CharacterId = character.CharacterId, BoostId = boost8});
+      }
+      if (boost9 != 0)
+      {
+        _db.CharacterBoosts.Add(new CharacterBoost() {CharacterId = character.CharacterId, BoostId = boost9});
+      }
+      
+      character.StrengthSet();
+      character.DexteritySet();
+      character.ConstitutionSet();
+      character.WisdomSet();
+      character.IntelligenceSet();
+      character.CharismaSet();
+      // character.HitpointSet();
       // CharacterClass currentClass = character.CharacterClass;
       // character.Level = character.Level + 1;
       // character.PerceptionProficiency = currentClass.PerceptionProficiency;

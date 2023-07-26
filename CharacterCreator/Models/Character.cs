@@ -41,6 +41,7 @@ namespace CharacterCreator.Models
     public string MediumArmorProficiency {get;set;}
     public string HeavyArmorProficiency {get;set;}
     public List<CharacterBoost> CharacterBoosts {get;set;}
+    public List<CharacterFlaw> CharacterFlaws {get;set;}
     public List<CharacterSkill> CharacterSkills {get;set;}
     public List<CharacterClassFeat> CharacterClassFeats {get;set;}
     public List<CharacterGeneralFeat> CharacterGeneralFeats {get;set;}
