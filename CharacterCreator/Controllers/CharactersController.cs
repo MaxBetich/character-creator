@@ -129,8 +129,8 @@ namespace CharacterCreator.Controllers
           backgroundBoostList.Add(join.Boost);
         }
       }
-      ViewBag.BackgroundBoosts = new SelectList(backgroundBoostList, "AbilityBoost", "AbilityBoost") ;
-      ViewBag.Boost2 = new SelectList(_db.Boosts.Where(e => e.AbilityBoost != "Free"), "AbilityBoost", "AbilityBoost");
+      ViewBag.BackgroundBoosts = new SelectList(backgroundBoostList, "BoostId", "AbilityBoost") ;
+      ViewBag.Boost2 = new SelectList(_db.Boosts.Where(e => e.AbilityBoost != "Free"), "BoostId", "AbilityBoost");
       // List<Flaw> ancestryFlaws = _db.Flaws
       //                               .Where(e => e.AncestryFlaws == currentAncestry.AncestryFlaws)
       //                               .ToList();
