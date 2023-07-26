@@ -252,5 +252,25 @@ namespace CharacterCreator.Controllers
       }
       return RedirectToAction("Details", new {id = character.CharacterId});
     }
+
+    public ActionResult Details(int id)
+    {
+      Character currentCharacter = _db.Characters
+                                        .Include(e => e.Ancestry)
+                                        .ThenInclude(e => e.AncestryFeats)
+                                        .Include(e => e.Ancestry)
+                                        .ThenInclude(e => e.AncestryBoosts)
+                                        .ThenInclude(e => e.Boost)
+                                        .Include(e => e.Ancestry)
+                                        .ThenInclude(e => e.AncestryFlaws)
+                                        .ThenInclude(e => e.Flaw)
+                                        .Include(e => e.Background)
+                                        .ThenInclude(e => e.BackgroundBoosts)
+                                        .ThenInclude(e => e.Boost)
+                                        .Include(e => e.CharacterClass)
+                                        .ThenInclude(e => e.ClassFeats)
+                                        .FirstOrDefault(e => e.CharacterId == id);
+      return View(currentCharacter);
+    }
   }
 }
