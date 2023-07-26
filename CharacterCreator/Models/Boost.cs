@@ -8,5 +8,6 @@ namespace CharacterCreator.Models
     public string AbilityBoost {get;set;}
     public List<AncestryBoost> AncestryBoosts {get;set;}
     public List<BackgroundBoost> BackgroundBoosts {get;set;}
+    public List<CharacterBoost> CharacterBoosts {get;set;}
   }
 }
