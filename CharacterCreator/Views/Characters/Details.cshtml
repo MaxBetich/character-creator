@@ -26,5 +26,5 @@
   <li>Intelligence: @Model.Intelligence</li>
   <li>Charisma: @Model.Charisma</li>
 </ul>
-
+<p>@Html.ActionLink("Delete", "Delete", new {id = Model.CharacterId})</p>
 <p>@Html.ActionLink("Return to Character List", "Index")</p>
