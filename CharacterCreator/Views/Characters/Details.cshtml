@@ -1,3 +1,26 @@
 @{
   Layout = "_Layout";
 }
+
+@model CharacterCreator.Models.Character
+
+<h1>Character Details</h1>
+
+<p>Name: @Model.CharacterName</p>
+
+<p>Class: @Model.CharacterClass.CharacterClassName</p>
+
+<p>Level: @Model.Level</p>
+
+<p>Hitpoints: @Model.Hitpoints</p>
+
+<ul>
+  <li>Strength: @Model.Strength</li>
+  <li>Dexterity: @Model.Dexterity</li>
+  <li>Constitution: @Model.Constitution</li>
+  <li>Wisdom: @Model.Wisdom</li>
+  <li>Intelligence: @Model.Intelligence</li>
+  <li>Charisma: @Model.Charisma</li>
+</ul>
+
+<p>@Html.ActionLink("Return to Character List", "Index")</p>

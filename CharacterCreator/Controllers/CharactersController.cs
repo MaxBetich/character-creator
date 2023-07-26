@@ -86,6 +86,7 @@ namespace CharacterCreator.Controllers
         // decimal conModifier = (character.Constitution - 10)/2;
         // int conHp = (int)Math.Floor(conModifier);
         // character.Hitpoints = character.Ancestry.StartingHitpoints + currentClass.ClassHitpoints + conHp;
+        // character.HitpointSet();
         _db.Characters.Add(character);
         _db.SaveChanges();
         return RedirectToAction("BoostSelect", new {id = character.CharacterId});
@@ -155,6 +156,7 @@ namespace CharacterCreator.Controllers
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       character.User = currentUser;
       int id = character.CharacterId;
+      character.HitpointSet();
       // CharacterClass currentClass = character.CharacterClass;
       // character.Level = character.Level + 1;
       // character.PerceptionProficiency = currentClass.PerceptionProficiency;

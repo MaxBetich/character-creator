@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace CharacterCreator.Models
 {
@@ -69,6 +70,28 @@ namespace CharacterCreator.Models
       LightArmorProficiency = "untrained";
       MediumArmorProficiency = "untrained";
       HeavyArmorProficiency = "untrained";
+    }
+
+    public void HitpointSet()
+    {
+      decimal conModifier = (this.Constitution - 10)/2;
+      this.Hitpoints = this.Ancestry.StartingHitpoints + this.CharacterClass.ClassHitpoints + (int)Math.Floor((conModifier)/2);
+    }
+
+    public void StrengthSet()
+    {
+      List<CharacterBoost> strengthBoosts =  this.CharacterBoosts.FindAll(e => e.Boost.AbilityBoost == "Strength");
+      foreach(CharacterBoost join in strengthBoosts)
+      {
+        if (this.Strength < 18)
+        {
+          this.Strength = this.Strength + 2;
+        }
+        else
+        {
+          this.Strength = this.Strength + 1;
+        }
+      }
     }
   }
 }
