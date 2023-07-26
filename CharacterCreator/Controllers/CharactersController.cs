@@ -215,7 +215,7 @@ namespace CharacterCreator.Controllers
       character.WisdomSet();
       character.IntelligenceSet();
       character.CharismaSet();
-      character.HitpointSet();
+      // character.HitpointSet();
       // CharacterClass currentClass = character.CharacterClass;
       // character.Level = character.Level + 1;
       // character.PerceptionProficiency = currentClass.PerceptionProficiency;
@@ -333,6 +333,21 @@ namespace CharacterCreator.Controllers
                                         .ThenInclude(e => e.ClassFeats)
                                         .FirstOrDefault(e => e.CharacterId == id);
       return View(currentCharacter);
+    }
+
+    public ActionResult Delete(int id)
+    {
+      Character thisCharacter = _db.Characters.FirstOrDefault(e => e.CharacterId == id);
+      return View(thisCharacter);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Character thisCharacter = _db.Characters.FirstOrDefault(e => e.CharacterId == id);
+      _db.Characters.Remove(thisCharacter);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
