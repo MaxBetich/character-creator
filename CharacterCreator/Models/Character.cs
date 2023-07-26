@@ -93,5 +93,85 @@ namespace CharacterCreator.Models
         }
       }
     }
+
+    public void DexteritySet()
+    {
+      List<CharacterBoost> dexterityBoosts =  this.CharacterBoosts.FindAll(e => e.Boost.AbilityBoost == "Dexterity");
+      foreach(CharacterBoost join in dexterityBoosts)
+      {
+        if (this.Dexterity < 18)
+        {
+          this.Dexterity = this.Dexterity + 2;
+        }
+        else
+        {
+          this.Dexterity = this.Dexterity + 1;
+        }
+      }
+    }
+
+    public void ConstitutionSet()
+    {
+      List<CharacterBoost> constitutionBoosts =  this.CharacterBoosts.FindAll(e => e.Boost.AbilityBoost == "Constitution");
+      foreach(CharacterBoost join in constitutionBoosts)
+      {
+        if (this.Constitution < 18)
+        {
+          this.Constitution = this.Constitution + 2;
+        }
+        else
+        {
+          this.Constitution = this.Constitution + 1;
+        }
+      }
+    }
+
+    public void WisdomSet()
+    {
+      List<CharacterBoost> wisdomBoosts =  this.CharacterBoosts.FindAll(e => e.Boost.AbilityBoost == "Wisdom");
+      foreach(CharacterBoost join in wisdomBoosts)
+      {
+        if (this.Wisdom < 18)
+        {
+          this.Wisdom = this.Wisdom + 2;
+        }
+        else
+        {
+          this.Wisdom = this.Wisdom + 1;
+        }
+      }
+    }
+
+    public void IntelligenceSet()
+    {
+      List<CharacterBoost> intelligenceBoosts =  this.CharacterBoosts.FindAll(e => e.Boost.AbilityBoost == "Intelligence");
+      foreach(CharacterBoost join in intelligenceBoosts)
+      {
+        if (this.Intelligence < 18)
+        {
+          this.Intelligence = this.Intelligence + 2;
+        }
+        else
+        {
+          this.Intelligence = this.Intelligence + 1;
+        }
+      }
+    }
+
+    public void CharismaSet()
+    {
+      List<CharacterBoost> charismaBoosts =  this.CharacterBoosts.FindAll(e => e.Boost.AbilityBoost == "Charisma");
+      foreach(CharacterBoost join in charismaBoosts)
+      {
+        if (this.Charisma < 18)
+        {
+          this.Charisma = this.Charisma + 2;
+        }
+        else
+        {
+          this.Charisma = this.Charisma + 1;
+        }
+      }
+    }
   }
 }
