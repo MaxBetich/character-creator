@@ -71,12 +71,16 @@ namespace CharacterCreator.Models
       LightArmorProficiency = "untrained";
       MediumArmorProficiency = "untrained";
       HeavyArmorProficiency = "untrained";
+      CharacterBoosts = new List<CharacterBoost>();
+      CharacterFlaws = new List<CharacterFlaw>();
+
     }
 
     public void HitpointSet()
     {
       decimal conModifier = (this.Constitution - 10)/2;
-      this.Hitpoints = this.Ancestry.StartingHitpoints + this.CharacterClass.ClassHitpoints + (int)Math.Floor((conModifier)/2);
+      int newHitpoints = (int)Math.Floor((conModifier)/2);
+      this.Hitpoints = (int)this.Ancestry.StartingHitpoints + newHitpoints;
     }
 
     public void StrengthSet()

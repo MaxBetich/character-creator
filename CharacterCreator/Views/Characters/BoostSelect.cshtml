@@ -41,7 +41,7 @@
   {
     @foreach (AncestryFlaw join in Model.Ancestry.AncestryFlaws)
     {
-      @Html.Hidden(join.Flaw.AbilityFlaw, "AbilityFlaw")
+      @Html.Value(join.Flaw.AbilityFlaw)
     }
   }
   <h2>Assign Boosts</h2>
@@ -55,7 +55,7 @@
     }
     else
     {
-      @Html.Hidden(join.Boost.AbilityBoost, "AbilityBoost")
+      @Html.Value(join.Boost.AbilityBoost)
       <li>@join.Boost.AbilityBoost</li>
     }
   }

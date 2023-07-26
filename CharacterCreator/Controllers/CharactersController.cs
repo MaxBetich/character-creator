@@ -30,6 +30,7 @@ namespace CharacterCreator.Controllers
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       List<Character> model = _db.Characters
                                   .Where(entry => entry.User.Id == currentUser.Id)
+                                  .OrderBy(e => e.CharacterId)
                                   .Include(e => e.CharacterClass)
                                   .ToList();
       return View(model);
@@ -155,18 +156,18 @@ namespace CharacterCreator.Controllers
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       character.User = currentUser;
       int id = character.CharacterId;
-      #nullable enable
-      CharacterFlaw? characterFlaw = _db.CharacterFlaws.FirstOrDefault(e => (e.FlawId == flaw1 && e.CharacterId == character.CharacterId));
-      CharacterBoost? characterBoost1 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost1 && e.CharacterId == character.CharacterId));
-      CharacterBoost? characterBoost2 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost2 && e.CharacterId == character.CharacterId));
-      CharacterBoost? characterBoost3 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost3 && e.CharacterId == character.CharacterId));
-      CharacterBoost? characterBoost4 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost4 && e.CharacterId == character.CharacterId));
-      CharacterBoost? characterBoost5 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost5 && e.CharacterId == character.CharacterId));
-      CharacterBoost? characterBoost6 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost6 && e.CharacterId == character.CharacterId));
-      CharacterBoost? characterBoost7 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost7 && e.CharacterId == character.CharacterId));
-      CharacterBoost? characterBoost8 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost8 && e.CharacterId == character.CharacterId));
-      CharacterBoost? characterBoost9 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost9 && e.CharacterId == character.CharacterId));
-      #nullable disable
+      // #nullable enable
+      // CharacterFlaw? characterFlaw = _db.CharacterFlaws.FirstOrDefault(e => (e.FlawId == flaw1 && e.CharacterId == id));
+      // CharacterBoost? characterBoost1 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost1 && e.CharacterId == id));
+      // CharacterBoost? characterBoost2 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost2 && e.CharacterId == id));
+      // CharacterBoost? characterBoost3 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost3 && e.CharacterId == id));
+      // CharacterBoost? characterBoost4 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost4 && e.CharacterId == id));
+      // CharacterBoost? characterBoost5 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost5 && e.CharacterId == id));
+      // CharacterBoost? characterBoost6 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost6 && e.CharacterId == id));
+      // CharacterBoost? characterBoost7 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost7 && e.CharacterId == id));
+      // CharacterBoost? characterBoost8 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost8 && e.CharacterId == id));
+      // CharacterBoost? characterBoost9 = _db.CharacterBoosts.FirstOrDefault(e => (e.BoostId == boost9 && e.CharacterId == id));
+      // #nullable disable
       if (flaw1 != 0)
       {
         _db.CharacterFlaws.Add(new CharacterFlaw() {CharacterId = character.CharacterId, FlawId = flaw1});
@@ -214,7 +215,7 @@ namespace CharacterCreator.Controllers
       character.WisdomSet();
       character.IntelligenceSet();
       character.CharismaSet();
-      // character.HitpointSet();
+      character.HitpointSet();
       // CharacterClass currentClass = character.CharacterClass;
       // character.Level = character.Level + 1;
       // character.PerceptionProficiency = currentClass.PerceptionProficiency;
@@ -234,7 +235,8 @@ namespace CharacterCreator.Controllers
       // _db.Characters.Update(character);
       // _db.CharacterSkillFeats.Add(new CharacterSkillFeat() {CharacterId = character.CharacterId, SkillFeatId = character.Background.SkillFeatId});
       _db.SaveChanges();
-      return RedirectToAction("FeatSelection1", new {id = id});
+      // return RedirectToAction("FeatSelection1", new {id = id});
+      return RedirectToAction("Details", new {id = id});
     }
 
     public ActionResult FeatSelection1(int id)
