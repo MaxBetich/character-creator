@@ -6,12 +6,6 @@ namespace CharacterCreator.Models
 {
   public class Character
   {
-    // private int _strength;
-    // private int _dexterity;
-    // private int _constitution;
-    // private int _intelligence;
-    // private int _wisdom;
-    // private int _charisma;
     public int CharacterId {get;set;}
     public string CharacterName {get;set;}
     public int Level{get;set;}
